@@ -2,7 +2,11 @@ package Figures;
 
 public class Pawn extends ChessFigure {
     public Pawn(boolean color) {
-        super("Pawn", color);
+        super(color);
+        if (color)
+            nameFigure = "[♟]";//negra
+        else
+            nameFigure = "[♙]";
     }
 
     @Override

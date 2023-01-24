@@ -1,10 +1,13 @@
-/*public class Game {
+import Figures.ChessFigure;
+import java.util.Scanner;
+
+public class Game {
     private boolean Turn;
     public int getTurn(){
         return Turn;
     }
     public void setTurn(){
-        this.turn;
+        this.Turn=Turn;
     }
     public String pedirInput(){
         Scanner scanner = new Scanner(System.in);

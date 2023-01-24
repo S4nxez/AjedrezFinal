@@ -4,8 +4,12 @@ public class Tablero {
     private ChessFigure tableroFichas[][] = new ChessFigure[8][8];
     // [FILAS][COLUMNAS]
 
+    public ChessFigure[][] getTableroFichas(){
+            return tableroFichas;
+    }
     public Tablero() {
 
+        //Peon
         for (int i = 0; i < 8; i++)
             tableroFichas[1][i] = new Pawn(true); // negras
         for (int i = 0; i < 8; i++)
@@ -37,7 +41,7 @@ public class Tablero {
         for (int i = 0; i < tableroFichas.length; i++) {
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
-                    System.out.print(tableroFichas[i][j].printChessFigure());
+                    System.out.print(tableroFichas[i][j].getNameFigure());
                 else
                     System.out.print("[  ]");
             }

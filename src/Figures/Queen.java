@@ -4,10 +4,9 @@ public class Queen extends ChessFigure {
     public Queen(boolean color) {
         super(color);
         if (color)
-            nameFigure = "Qn";//reina negra
+            nameFigure = "[♛]";//reina negra
         else
-            nameFigure = "Qb";
-
+            nameFigure = "[♕]";
     }
 
     @Override

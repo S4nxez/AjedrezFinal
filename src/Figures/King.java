@@ -2,7 +2,11 @@ package Figures;
 
 public class King extends ChessFigure {
     public King(boolean color) {
-        super("King", color);
+        super( color);
+        if (color)
+            nameFigure = "[♚]";//negra
+        else
+            nameFigure = "[♔]";
     }
 
     @Override
