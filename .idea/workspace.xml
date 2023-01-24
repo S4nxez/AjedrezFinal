@@ -2,24 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
-      <change afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Figures/ChessFigure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Figures/bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
+    </list>
+    <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier">
+      <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
+    </list>
+    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay">
+      <change afterPath="$PROJECT_DIR$/src/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
+    </list>
+    <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd">
       <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figures/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Queen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
     </list>
-    <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
-    </list>
-    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Movement.java" afterDir="false" />
-    </list>
-    <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="" />
+    <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +41,27 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Tablero.java">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="9" changelist="82432f85-4863-4886-9f4a-51314407cbd5" />
+        <range start1="8" end1="8" start2="11" end2="12" changelist="82432f85-4863-4886-9f4a-51314407cbd5" />
+        <range start1="13" end1="14" start2="17" end2="18" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
+        <range start1="21" end1="22" start2="25" end2="26" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
+        <range start1="30" end1="36" start2="34" end2="36" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
+        <range start1="43" end1="44" start2="43" end2="44" changelist="82432f85-4863-4886-9f4a-51314407cbd5" />
+        <range start1="45" end1="47" start2="45" end2="46" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Game.java">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="4" changelist="82432f85-4863-4886-9f4a-51314407cbd5" />
+        <range start1="2" end1="3" start2="5" end2="12" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
+        <range start1="6" end1="7" start2="15" end2="16" changelist="82432f85-4863-4886-9f4a-51314407cbd5" />
+        <range start1="8" end1="9" start2="17" end2="54" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,6 +78,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TODO_SCOPE": "All Places",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "11",
     "project.structure.last.edited": "Modules",
@@ -79,8 +108,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674507525661</updated>
-      <workItem from="1674507528623" duration="12148000" />
+      <workItem from="1674507528623" duration="25597000" />
     </task>
+    <task id="LOCAL-00001" summary="Posiciones con Ascii">
+      <created>1674563780090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674563780090</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +136,33 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Posiciones con Ascii" />
-    <option name="LAST_COMMIT_MESSAGE" value="Posiciones con Ascii" />
+    <MESSAGE value="adasd" />
+    <option name="LAST_COMMIT_MESSAGE" value="adasd" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Game.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Game.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Game.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Game.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

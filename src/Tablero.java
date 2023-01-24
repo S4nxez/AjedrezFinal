@@ -19,7 +19,7 @@ public class Tablero {
         tableroFichas[0][1] = new Horse(true); tableroFichas[0][6] = new Horse(true); //negras
         tableroFichas[7][1] = new Horse(false); tableroFichas[7][6] = new Horse(false); //blancas
 
-        //Alfiles
+        //Alphiles
         tableroFichas[0][2] = new Bishop(true); tableroFichas[0][5] = new Bishop(true); //negras
         tableroFichas[7][2] = new Bishop(false); tableroFichas[7][5] = new Bishop(false); //blancas
 
@@ -28,12 +28,8 @@ public class Tablero {
         tableroFichas[7][3] = new Queen(false);//blancas
 
         //Rey
-        tableroFichas[0][4] = new King(true);
-        tableroFichas[7][4] = new King(false);
-
-
-
-
+        tableroFichas[0][4] = new King(true);//negras
+        tableroFichas[7][4] = new King(false);//blancas
 
     }
 
@@ -43,8 +39,7 @@ public class Tablero {
                 if (tableroFichas[i][j] != null)
                     System.out.print(tableroFichas[i][j].printChessFigure());
                 else
-                    System.out.print("--");
-
+                    System.out.print("[  ]");
             }
             System.out.println();
         }
