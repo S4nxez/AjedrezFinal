@@ -13,15 +13,13 @@ public class Position {
         this.columna = columna;
     }
 
-    public int getFila() {
-        return fila;
+    public int getFila() {return fila;
     }
 
-    public int getColumna() {
-        return columna;
+    public int getColumna() {return columna;
     }
+    @Override
     public String toString() {
-        return String.valueOf(fila + columna);
-
+       return String.valueOf(fila + columna);
     }
 }

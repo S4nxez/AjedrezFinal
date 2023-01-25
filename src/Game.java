@@ -3,7 +3,13 @@ import java.util.Scanner;
 
 public class Game {
     private boolean Turn;
-    public int getTurn(){
+    private String Jugada;
+    Tablero Tb = new Tablero();
+    private ChessFigure[][] tableroCopia = Tb.getTableroFichas();
+    public Game(boolean Turn){
+        this.Turn=Turn;
+    }
+    public boolean getTurn(){
         return Turn;
     }
     public void setTurn(){

@@ -15,7 +15,7 @@ public class Tablero {
         for (int i = 0; i < 8; i++)
             tableroFichas[6][i] = new Pawn(false);// blancas
 
-        //torres
+        //Torres
         tableroFichas[0][0] = new Rook(true); tableroFichas[0][7] = new Rook(true); //negras
         tableroFichas[7][0] = new Rook(false); tableroFichas[7][7] = new Rook(false); //blancas
         
