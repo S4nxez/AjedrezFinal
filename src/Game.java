@@ -12,14 +12,19 @@ public class Game {
     public boolean getTurn(){
         return Turn;
     }
-    public void setTurn(){
-        this.Turn=Turn;
-    }
+    // public void setTurn(){
+    //     this.Turn=Turn;
+    // }
     public String pedirInput(){
         Scanner scanner = new Scanner(System.in);
         boolean jugadaValida=false;
+        String turno;
+        if (getTurn()){
+            turno= "blancas";
+        }else
+            turno="negras";
         while (!jugadaValida){
-            System.out.println("Ingrese la jugada (ej. e2-e4): ");
+            System.out.println("Judador de"+turno+", ingrese la jugada (ej. e2-e4): ");
             Jugada = scanner.nextLine();
             Jugada = Jugada.toUpperCase();
             int i,j,k,l;
@@ -49,6 +54,7 @@ public class Game {
             else
                 jugadaValida=true;
         }
+        scanner.close();
         return Jugada;
     }
 }
