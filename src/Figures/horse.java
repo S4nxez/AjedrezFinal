@@ -4,9 +4,9 @@ public class Horse extends ChessFigure {
     public Horse(boolean color) {
         super( color);
         if (color)
-            nameFigure = "[♚]";//negra
+            nameFigure = "[♞]";//negra
         else
-            nameFigure = "[♔]";
+            nameFigure = "[♘]";
     }
 
     @Override
