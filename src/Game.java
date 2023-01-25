@@ -43,7 +43,6 @@ public class Game {
             jugadaValida = false;
             if (Jugada.length()!=4){
                 System.out.println("E: Longitud de jugada no valida");
-
             }
             else if (Jugada.charAt(1) >='A' && Jugada.charAt(1) <='H' || Jugada.charAt(3) >='A' && Jugada.charAt(3) <='H'){
                 System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");

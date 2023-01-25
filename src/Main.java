@@ -6,7 +6,5 @@ public class Main {
         Game h = new Game(true);
         c.pintarTablero();
         h.pedirInput();
-
-
     }
 }
