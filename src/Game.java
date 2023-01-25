@@ -12,9 +12,16 @@ public class Game {
     public boolean getTurn(){
         return Turn;
     }
+
     // public void setTurn(){
     //     this.Turn=Turn;
     // }
+
+    /**
+     * @return pedirInput
+     * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
+     * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
+     */
     public String pedirInput(){
         Scanner scanner = new Scanner(System.in);
         boolean jugadaValida=false;
@@ -24,7 +31,7 @@ public class Game {
         }else
             turno="negras";
         while (!jugadaValida){
-            System.out.println("Judador de"+turno+", ingrese la jugada (ej. e2-e4): ");
+            System.out.println("Judador de "+turno+", ingrese la jugada (ej. e2-e4): ");
             Jugada = scanner.nextLine();
             Jugada = Jugada.toUpperCase();
             int i,j,k,l;
