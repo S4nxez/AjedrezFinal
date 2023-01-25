@@ -48,4 +48,11 @@ public class Tablero {
             System.out.println();
         }
     }
+    public boolean hayPieza(int fila, int columna){
+        return tableroFichas[fila][columna]==null;
+    }
+
+    public ChessFigure devuelvePieza(int k, int l) {
+        return tableroFichas[k][l];
+    }
 }

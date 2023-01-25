@@ -1,3 +1,5 @@
+package Mecanicas;
+
 public class Position {
     private int fila;
     private int columna;
