@@ -12,9 +12,9 @@ public class Bishop extends ChessFigure {
 
     @Override
     public boolean movement(Movement mov, Tablero tb){
-            return mov.esDiagonal();
+        return mov.esDiagonal();
         }
-    }
+}
 
 
 

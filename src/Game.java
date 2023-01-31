@@ -4,6 +4,8 @@ import Mecanicas.Movement;
 import java.util.Scanner;
 
 public class Game {
+    
+    Scanner scanner = new Scanner(System.in);
     private boolean Turn;
     private String Jugada;
     private boolean finPartida;
@@ -43,7 +45,6 @@ public class Game {
         tb.pintarTablero();
         while (!jugadaValida) {
             turno = getTurn() ? "blancas" : "negras";
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Judador de " + turno + ", ingrese la jugada (ej. e2e4): ");
 
             Jugada = scanner.nextLine();
@@ -69,7 +70,7 @@ public class Game {
                 //else if(tb.getTableroFichas()[i][j] == null){
                 else if (!tb.hayPieza(i, j)) {
                     System.out.println("Ahí no hay pieza.");
-                } else if (tb.hayPieza(k, l) && tb.devuelvePieza(k, l).getColor() != Turn) {
+                } else if (tb.devuelvePieza(i, j).getColor() == Turn/*EL TURNO Y EL COLOR DE LAS FIGURAS ESTÁ AL REVÉS*/) {
                     System.out.println("Debes mover una ficha de tu color");
                 } else if (tb.hayPieza(k, l) && tb.getTableroFichas()[k][l].getColor() == tb.getTableroFichas()[i][j].getColor()) {
                     System.out.println("Que haces comiéndote tu propia ficha? No puedes");
@@ -79,7 +80,6 @@ public class Game {
                 }
             }
         }
-        setTurno(!Turn);
         return mov;
     }
     /*public String decirResultado(){//metodo que nos da el ganador en un string para hacer el sout en el main
