@@ -1,4 +1,5 @@
 package Figures;
+import Mecanicas.*;
 
 public class Bishop extends ChessFigure {
     public Bishop(boolean color) {
@@ -10,7 +11,10 @@ public class Bishop extends ChessFigure {
     }
 
     @Override
-    public void movement() {
-        //Move
+    public boolean movement(Movement mov, Tablero tb){
+            return mov.esDiagonal();
+        }
     }
-}
+
+
+

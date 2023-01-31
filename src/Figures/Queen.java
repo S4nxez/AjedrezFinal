@@ -1,5 +1,7 @@
 package Figures;
 
+import Mecanicas.*;
+
 public class Queen extends ChessFigure {
     public Queen(boolean color) {
         super(color);
@@ -10,7 +12,10 @@ public class Queen extends ChessFigure {
     }
 
     @Override
-    public void movement() {
-        //Move
+    public boolean movement(Movement mov, Tablero tb) {
+        return mov.esDiagonal() || mov.esHorizontal() || mov.esVertical();
+
     }
 }
+
+

@@ -1,66 +1,92 @@
-import Figures.ChessFigure;
+import Mecanicas.Position;
+import Mecanicas.Tablero;
+import Mecanicas.Movement;
 import java.util.Scanner;
 
 public class Game {
     private boolean Turn;
     private String Jugada;
-    Tablero Tb = new Tablero();
-    private ChessFigure[][] tableroCopia = Tb.getTableroFichas();
+    private boolean finPartida;
+
     public Game(boolean Turn){
-        this.Turn=Turn;
+        this.finPartida = false;
+        this.Turn = Turn;
     }
+
+    public boolean getFinPartida() {
+        return this.finPartida;
+    }
+    public void cambiarTurno(){
+        Turn=!Turn;
+    }
+
     public boolean getTurn(){
         return Turn;
     }
 
-    // public void setTurn(){
-    //     this.Turn=Turn;
-    // }
+    public void setTurno(boolean turno) {
+        this.Turn = turno;
+    }
 
     /**
      * @return pedirInput
      * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
      * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
      */
-    public String pedirInput(){
-        Scanner scanner = new Scanner(System.in);
-        boolean jugadaValida=false;
+    public Movement pedirInput(Tablero tb){
+        boolean jugadaValida=false, finPartida=false;
+        Movement mov = null;
         String turno;
-        if (getTurn()){
-            turno= "blancas";
-        }else
-            turno="negras";
-        while (!jugadaValida){
-            System.out.println("Judador de "+turno+", ingrese la jugada (ej. e2-e4): ");
+
+
+
+        tb.pintarTablero();
+        while (!jugadaValida) {
+            turno = getTurn() ? "blancas" : "negras";
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Judador de " + turno + ", ingrese la jugada (ej. e2e4): ");
+
             Jugada = scanner.nextLine();
             Jugada = Jugada.toUpperCase();
-            int i,j,k,l;
-            i = (Jugada.charAt(0)-65);
-            j = (Jugada.charAt(1)-49);
-            k = (Jugada.charAt(2)-65);
-            l = (Jugada.charAt(3)-49);
-
-            jugadaValida = false;
-            if (Jugada.length()!=4){
+            if (Jugada.length() != 4) {
                 System.out.println("E: Longitud de jugada no valida");
+            }else {
+                int i, j, k, l;
+                j = Jugada.charAt(0) - 65; //columnaInicial
+                i = Jugada.charAt(1) - 49; // filaInicial
+                l = Jugada.charAt(2) - 65; //columnaFinal
+                k = Jugada.charAt(3) - 49;//filaFinal
+
+                System.out.println(j + "" + i + "" + l + "" + k);
+
+                jugadaValida = false;
+
+                if (i <= 0 && i >= 7 || k > 0 && k >= 7) {
+                    System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");
+                } else if (j <= 0 && j >= 7 || l <= 0 && l >= 7) {
+                    System.out.println("E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8");
+                }
+                //else if(tb.getTableroFichas()[i][j] == null){
+                else if (!tb.hayPieza(i, j)) {
+                    System.out.println("Ahí no hay pieza.");
+                } else if (tb.hayPieza(k, l) && tb.devuelvePieza(k, l).getColor() != Turn) {
+                    System.out.println("Debes mover una ficha de tu color");
+                } else if (tb.hayPieza(k, l) && tb.getTableroFichas()[k][l].getColor() == tb.getTableroFichas()[i][j].getColor()) {
+                    System.out.println("Que haces comiéndote tu propia ficha? No puedes");
+                } else {
+                    jugadaValida = true;
+                    mov = new Movement(new Position(i, j), new Position(k, l));
+                }
             }
-            else if (Jugada.charAt(1) >='A' && Jugada.charAt(1) <='H' || Jugada.charAt(3) >='A' && Jugada.charAt(3) <='H'){
-                System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");
-            }
-            else if (Jugada.charAt(2) >= 49 && Jugada.charAt(2) <= 56 || Jugada.charAt(4) >=49 && Jugada.charAt(4) <= 56 ){
-                System.out.println("E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8");
-            }
-            else if(tableroCopia[i][j] == null){
-                System.out.println("Ahí no hay pieza.");}
-            else if(tableroCopia[i][j].getColor()!=Turn){
-                System.out.println("Debes mover una ficha de tu color");
-            }
-            else if (tableroCopia[i][j].getColor() == tableroCopia[k][l].getColor()){
-                System.out.println("Que haces comiéndote tu propia ficha? No puedes");}
-            else
-                jugadaValida=true;
         }
-        scanner.close();
-        return Jugada;
+        setTurno(!Turn);
+        return mov;
     }
+    /*public String decirResultado(){//metodo que nos da el ganador en un string para hacer el sout en el main
+        if(getTurn() == true && mate== true)
+            resultado="ganan true";
+        else if(getTurn() == false && mate == true)
+            resutlado="ganan false";
+        return resultado;
+    }*/
 }
