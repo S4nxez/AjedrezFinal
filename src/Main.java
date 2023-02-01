@@ -15,6 +15,7 @@ public class Main {
            else{
                c.moverPieza(mov);
                h.cambiarTurno();
+               System.out.println(c.isEnrroque());
            }
         }
         //System.out.println("Ganan "+h.decirResultado());

@@ -2,37 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figures/ChessFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/ChessFigure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mecanicas/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Movement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
     </list>
-    <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier">
-      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
-    </list>
-    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="hsjd">
-      <change beforePath="$PROJECT_DIR$/src/Figures/ChessFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/ChessFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
-    </list>
+    <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier" />
+    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="hsjd" />
     <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd" />
     <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
-    <list id="3e008487-23a9-4033-8968-8cb214da2c5b" name="Changes by Nacho" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
-    </list>
+    <list id="3e008487-23a9-4033-8968-8cb214da2c5b" name="Changes by Nacho" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,64 +35,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Game.java">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="3" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="6" end1="8" start2="8" end2="10" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="9" end1="10" start2="11" end2="13" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
-        <range start1="11" end1="11" start2="14" end2="22" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="15" end1="18" start2="26" end2="29" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
-        <range start1="24" end1="27" start2="35" end2="38" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="28" end1="34" start2="39" end2="48" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="36" end1="44" start2="50" end2="51" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="45" end1="61" start2="52" end2="80" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="62" end1="64" start2="81" end2="83" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="65" end1="65" start2="84" end2="91" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Mecanicas/Tablero.java">
-      <ranges>
-        <range start1="0" end1="0" start2="0" end2="2" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="6" end1="8" start2="8" end2="10" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="9" end1="9" start2="11" end2="12" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="18" end1="21" start2="21" end2="26" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="22" end1="24" start2="27" end2="31" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="26" end1="28" start2="33" end2="37" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="39" end1="39" start2="48" end2="49" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
-        <range start1="45" end1="46" start2="55" end2="56" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="50" end1="52" start2="60" end2="68" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
-        <range start1="53" end1="53" start2="69" end2="79" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Figures/ChessFigure.java">
-      <ranges>
-        <range start1="1" end1="1" start2="1" end2="2" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="3" end1="4" start2="4" end2="5" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="29" end1="30" start2="30" end2="41" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Figures/King.java">
-      <ranges>
-        <range start1="1" end1="1" start2="1" end2="2" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
-        <range start1="4" end1="5" start2="5" end2="6" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="12" end1="14" start2="13" end2="21" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Figures/Pawn.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="5" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
-        <range start1="11" end1="11" start2="14" end2="23" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
-        <range start1="12" end1="14" start2="24" end2="40" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Main.java">
-      <ranges>
-        <range start1="1" end1="1" start2="1" end2="3" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
-        <range start1="6" end1="8" start2="8" end2="19" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -162,6 +92,8 @@
       <workItem from="1675085662650" duration="756000" />
       <workItem from="1675162381115" duration="9430000" />
       <workItem from="1675173493390" duration="2582000" />
+      <workItem from="1675199165787" duration="341000" />
+      <workItem from="1675199553324" duration="8197000" />
     </task>
     <task id="LOCAL-00001" summary="Posiciones con Ascii">
       <created>1674563780090</created>

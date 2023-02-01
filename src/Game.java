@@ -70,10 +70,10 @@ public class Game {
                 //else if(tb.getTableroFichas()[i][j] == null){
                 else if (!tb.hayPieza(i, j)) {
                     System.out.println("Ahí no hay pieza.");
-                } else if (tb.devuelvePieza(i, j).getColor() == Turn/*EL TURNO Y EL COLOR DE LAS FIGURAS ESTÁ AL REVÉS*/) {
-                    System.out.println("Debes mover una ficha de tu color");
                 } else if (tb.hayPieza(k, l) && tb.getTableroFichas()[k][l].getColor() == tb.getTableroFichas()[i][j].getColor()) {
                     System.out.println("Que haces comiéndote tu propia ficha? No puedes");
+                } else if (tb.devuelvePieza(i, j).getColor() == Turn/*EL TURNO Y EL COLOR DE LAS FIGURAS ESTÁ AL REVÉS*/) {
+                    System.out.println("Debes mover una ficha de tu color");
                 } else {
                     jugadaValida = true;
                     mov = new Movement(new Position(i, j), new Position(k, l));

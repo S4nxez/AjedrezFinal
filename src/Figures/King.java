@@ -10,6 +10,15 @@ public class King extends ChessFigure {
             nameFigure = "[♔]";
     }
 
+    private boolean kingMoved = false;
+
+    public void setKingMoved(boolean kingMoved) {
+        this.kingMoved = kingMoved;
+    }
+
+    public boolean isKingMoved() {
+        return kingMoved;
+    }
     @Override
     public boolean movement(Movement mov, Tablero tb) {
         if (mov.esDiagonal()&&(Math.abs(mov.saltoVertical()) + Math.abs(mov.saltoHorizontal()) == 2 ))

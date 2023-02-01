@@ -5,9 +5,16 @@ import Figures.*;
 public class Tablero {
     private ChessFigure tableroFichas[][] = new ChessFigure[8][8];
     // [FILAS][COLUMNAS]
-
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
+    }
+
+    private boolean enrroque=true;
+    public boolean isEnrroque() {
+        return enrroque;
+    }
+    public void setEnrroque(boolean enrroque) {
+        this.enrroque = enrroque;
     }
 
     public Tablero() {
@@ -51,19 +58,28 @@ public class Tablero {
         for (int i = 0; i < tableroFichas.length; i++) {
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
-                    System.out.print(tableroFichas[i][j].getNameFigure());
+                    System.out.print(tableroFichas[i][j].getNameFigure(i,j));
                 else
                     System.out.print("[ ]");
             }
             System.out.println();
         }
     }
+    public ChessFigure devuelvePieza(int fila, int columna) {
+        return tableroFichas[fila][columna];
+    }
 
     public void moverPieza(Movement mov) {
         tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
         tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
+        enrroque();
     }
-
+    public void enrroque(){
+        if (tableroFichas[0][0]==null||
+                tableroFichas[7][0]==null||
+                tableroFichas[0][7]==null||
+                tableroFichas[7][7]==null){enrroque=false;}
+    }
     public boolean hayPieza(int fila, int columna) {
         return tableroFichas[fila][columna]!= null;
     }
@@ -78,7 +94,4 @@ public class Tablero {
 
 
 
-    public ChessFigure devuelvePieza(int k, int l) {
-        return tableroFichas[k][l];
-    }
 }

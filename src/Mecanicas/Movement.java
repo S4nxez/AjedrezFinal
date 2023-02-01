@@ -27,11 +27,12 @@ public class Movement {
             respuesta = true;
         return respuesta;
     }
-    public Position getstartPos(){return startPos;}
-    public Position getendPos(){return endPos;}
     public boolean esDiagonal() {
         return Math.abs(saltoVertical()) == Math.abs(saltoHorizontal());
     }
+    public boolean esCaballo(){ return true;}
+    public Position getstartPos(){return startPos;}
+    public Position getendPos(){return endPos;}
     public int saltoVertical() {
         return (endPos.getFila() - startPos.getFila());
     }

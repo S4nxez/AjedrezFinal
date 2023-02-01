@@ -13,6 +13,16 @@ public class Rook extends ChessFigure {
     }
 
 
+    private boolean rookMoved = false;
+
+    public void setRookMoved(boolean rookMoved) {
+        this.rookMoved = rookMoved;
+    }
+
+    public boolean isRookMoved() {
+        return rookMoved;
+    }
+
     public boolean movement(Movement mov, Tablero tb) {
         return mov.esHorizontal()|| mov.esVertical();
     }

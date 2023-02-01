@@ -18,7 +18,7 @@ public abstract class ChessFigure {
         return this.color;
     }
     
-    public String getNameFigure() {
+    public String getNameFigure(int fila, int columna) {
         return nameFigure;
         /*
             ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
