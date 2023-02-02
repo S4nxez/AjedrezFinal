@@ -23,14 +23,14 @@ public class Pawn extends ChessFigure {
     /* Hay que añadir la condicion de que haya */
     @Override
     public boolean movement(Movement mov, Tablero tb) {
-        if (mov.saltoVertical() == 1 && getColor() == true)
+        if (mov.esDiagonal() && mov.saltoVertical()==1 && getColor() == true && tb.hayPieza(mov.getendPos()) == true)
+            return mov.esDiagonal();
+        else if (mov.esDiagonal() && mov.saltoVertical()==-1 && getColor() == false && tb.hayPieza(mov.getendPos()) == true)
+            return mov.esDiagonal();
+        else if (mov.saltoVertical() == 1 && getColor() == true)
             return mov.esVertical();
         else if ((mov.saltoVertical() == -1 && getColor() == false))
             return mov.esVertical();
-        else if (mov.esDiagonal() && (mov.saltoVertical() + (mov.saltoHorizontal()) == 2 && getColor() == true) && tb.hayPieza(mov.getendPos()) == true)
-                return mov.esDiagonal();
-        else if (mov.esDiagonal() && (mov.saltoVertical() + (mov.saltoHorizontal()) == -2 && getColor() == false) && tb.hayPieza(mov.getendPos()) == true)
-                return mov.esDiagonal();
         else if (mov.getstartPos().getFila() == 1 && getColor() == true && mov.saltoVertical() == 2 )
                 return mov.esVertical();
         else if (mov.getstartPos().getFila() == 6 && getColor() == false && mov.saltoVertical() == -2)

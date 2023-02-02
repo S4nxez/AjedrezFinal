@@ -62,7 +62,7 @@ public class Game {
 
                 jugadaValida = false;
 
-                if (i <= 0 && i >= 7 || k > 0 && k >= 7) {
+                if (i <= 0 && i >= 7 || k >= 0 && k >= 7) {
                     System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");
                 } else if (j <= 0 && j >= 7 || l <= 0 && l >= 7) {
                     System.out.println("E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8");

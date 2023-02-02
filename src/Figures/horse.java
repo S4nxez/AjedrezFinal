@@ -13,12 +13,10 @@ public class Horse extends ChessFigure {
     @Override
     public boolean movement(Movement mov, Tablero tb) {
         
-        if (mov.saltoHorizontal()==1 && mov.saltoVertical()==2 ||
-            mov.saltoHorizontal()==2 && mov.saltoVertical()==1 ||
-            mov.saltoHorizontal()==-1 && mov.saltoVertical()==-2 ||
-            mov.saltoHorizontal()==-2 && mov.saltoVertical()==-1 ){
-            return (mov.saltoVertical()==1 && mov.saltoHorizontal() == 2 || mov.saltoHorizontal() == 2 && mov.saltoVertical() == 1);
-        }
-        else return false;
+        if  (Math.abs(mov.saltoHorizontal()) == 1 && Math.abs(mov.saltoVertical()) == 2 ||
+            Math.abs(mov.saltoHorizontal()) == 2 && Math.abs(mov.saltoVertical()) == 1) {
+            return mov.esCaballo();
+
+        } else {return false;}
     }
 }
