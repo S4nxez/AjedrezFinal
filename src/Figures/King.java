@@ -22,11 +22,11 @@ public class King extends ChessFigure {
     @Override
     public boolean movement(Movement mov, Tablero tb) {
         if (mov.esDiagonal()&&(Math.abs(mov.saltoVertical()) + Math.abs(mov.saltoHorizontal()) == 2 ))
-            return mov.esDiagonal();
-        else if (Math.abs(mov.saltoHorizontal())==1)
-            return mov.esHorizontal();
-        else if (mov.saltoVertical()==1)
-            return mov.esVertical();
+            return true;
+        else if (Math.abs(mov.saltoHorizontal())==1 && mov.esHorizontal())
+            return true;
+        else if (Math.abs(mov.saltoVertical())==1 && mov.esVertical())
+            return true;
         else return false;
     }
 }

@@ -88,6 +88,13 @@ public class Tablero {
         return hayPieza(pos.getFila(), pos.getColumna());
     }
 
+    public boolean hayPiezaEntre(Position pos Movement mov){
+        if (pos.getFila()){
+        return true;
+        };
+
+    }
+
     public boolean quitaPieza(int fila, int columna){return tableroFichas[fila][columna]==null;}
     public boolean quitaPieza(Position pos){
         return quitaPieza(null);}
