@@ -126,19 +126,17 @@ public class Tablero {
             int col1= mov.getstartPos().getColumna();
             int col2= mov.getendPos().getColumna();
             if (col1>col2) {
-                for (int j = col1; j < col2; j++) {
+                for (int j = col1; j < col2; j--) {
                     if (hayPieza(i,j)){
-                        return false;
+                        respuesta=true;
                     }
-                    else return true;
                 }
             }
             else {
                 for (int j = col1; j < col1; j++) {
                     if (hayPieza(i,j)){
-                        return false;
+                        respuesta=true;
                     }
-                    else return true;
                 }
             }
         }
@@ -147,7 +145,7 @@ public class Tablero {
             int fila1= mov.getstartPos().getFila();
             int fila2= mov.getendPos().getFila();
             if (fila1>fila2){
-                for (int i = fila1; i > fila1 ; i++) {
+                for (int i = fila1; i > fila2 ; i--) {
                     if (hayPieza(i,j))
                         respuesta=true;
                 }

@@ -1,14 +1,15 @@
 package Mecanicas;
 
 /**
- *
+ *Movimiento
+ * @author NDJ
  */
 public class Movement {
     private Position startPos;
     private Position endPos;
 
     /**
-     *
+     *Constructor del movimiento con posicion final e inicial
      * @param startPos
      * @param endPos
      */
@@ -18,7 +19,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Constructor del movimiento con filas y columnas al inicio y final del movimiento
      * @param filaInicial
      * @param columnaInicial
      * @param filaFinal
@@ -30,7 +31,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para comprabar si un movimiento es vertical
      * @return
      */
     public boolean esVertical() {
@@ -42,7 +43,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para comprobar si un movimiento es horizontal
      * @return
      */
     public boolean esHorizontal() {
@@ -53,7 +54,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para comprobar si un movimiento es diagonal
      * @return
      */
     public boolean esDiagonal() {
@@ -61,20 +62,20 @@ public class Movement {
     }
 
     /**
-     *
+     *Getter de la posición inicial
      * @return
      */
 
     public Position getstartPos(){return startPos;}
 
     /**
-     *
+     *Getter de la posición final
      * @return
      */
     public Position getendPos(){return endPos;}
 
     /**
-     *
+     *Método para saber si un moviemiento es un salto vertical
      * @return
      */
 
@@ -83,7 +84,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para saber si un movimiento es un salto horizontal
      * @return
      */
     public int saltoHorizontal() {

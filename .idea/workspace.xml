@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AjedrezFinal" beforeDir="false" afterPath="$PROJECT_DIR$/AjedrezFinal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AjedrezFinal/.idea/misc.xml" beforeDir="false" />
@@ -10,11 +9,16 @@
       <change beforePath="$PROJECT_DIR$/AjedrezFinal/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AjedrezFinal/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AjedrezFinal/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
     </list>
     <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier" />
-    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="hsjd" />
+    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="hsjd">
+      <change beforePath="$PROJECT_DIR$/AjedrezFinal/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/AjedrezFinal/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AjedrezFinal/src/Mecanicas/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/AjedrezFinal/src/Mecanicas/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Movement.java" afterDir="false" />
+    </list>
     <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd" />
     <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
     <list id="3e008487-23a9-4033-8968-8cb214da2c5b" name="Changes by Nacho" comment="Changes by Nacho" />
@@ -57,7 +61,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RunManager">
@@ -93,6 +97,8 @@
       <workItem from="1675199165787" duration="341000" />
       <workItem from="1675199553324" duration="13428000" />
       <workItem from="1675669667512" duration="4828000" />
+      <workItem from="1675689944128" duration="1369000" />
+      <workItem from="1675691863725" duration="549000" />
     </task>
     <task id="LOCAL-00001" summary="Posiciones con Ascii">
       <created>1674563780090</created>
