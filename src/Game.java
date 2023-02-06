@@ -18,6 +18,7 @@ public class Game {
     public boolean getFinPartida() {
         return this.finPartida;
     }
+
     public void cambiarTurno(){
         Turn=!Turn;
     }

@@ -70,9 +70,10 @@ public class Tablero {
     }
 
     public void moverPieza(Movement mov) {
-        tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
-        tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
-        enrroque();
+        if (!hayPiezaEntre(mov)){
+            tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
+            tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
+        }
     }
     public void enrroque(){
         if (tableroFichas[0][0]==null||
@@ -88,11 +89,59 @@ public class Tablero {
         return hayPieza(pos.getFila(), pos.getColumna());
     }
 
-    public boolean hayPiezaEntre(Position pos Movement mov){
-        if (pos.getFila()){
-        return true;
-        };
+    public boolean hayPiezaEntre(Movement mov){
+        boolean respuesta = false;
+        if (mov.esDiagonal()){
+            if (mov.getstartPos().getFila() > mov.getendPos().getFila()){
+                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i--, j--) {
+                    if (hayPieza(i,j)){
+                        respuesta=true;
+                    }
+                }
+            }
+            else if () {
 
+            }
+        }
+        else if(mov.esHorizontal() && !mov.esVertical()){
+            int i = mov.getstartPos().getFila();
+            int col1= mov.getstartPos().getColumna();
+            int col2= mov.getendPos().getColumna();
+            if (col1>col2) {
+                for (int j = col1; j < col2; j++) {
+                    if (!hayPieza(i,j)){
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+            else {
+                for (int j = col1; j < col1; j++) {
+                    if (!hayPieza(i,j)){
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+        }
+        else if (mov.esVertical() && !mov.esHorizontal()){
+            int j =mov.getstartPos().getColumna();
+            int fila1= mov.getstartPos().getFila();
+            int fila2= mov.getendPos().getFila();
+            if (fila1>fila2){
+                for (int i = fila1; i > fila1 ; i++) {
+                    if (!hayPieza(i,j))
+                        respuesta=true;
+                }
+            }
+            else{
+                for (int i = fila1; i < fila2; i++) {
+                    if (!hayPieza(i,j))
+                        respuesta=true;
+                }
+            }
+        }
+        return respuesta;
     }
 
     public boolean quitaPieza(int fila, int columna){return tableroFichas[fila][columna]==null;}

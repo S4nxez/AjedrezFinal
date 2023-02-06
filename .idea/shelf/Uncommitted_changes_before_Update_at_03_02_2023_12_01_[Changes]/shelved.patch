@@ -1,0 +1,557 @@
+Index: src/Mecanicas/Movement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mecanicas/Movement.java b/src/Mecanicas/Movement.java
+--- a/src/Mecanicas/Movement.java	
++++ b/src/Mecanicas/Movement.java	
+@@ -1,17 +1,41 @@
++package Mecanicas;
++
+ public class Movement {
+     private Position startPos;
+     private Position endPos;
+-    private boolean esVertical(){
++
++    public Movement(Position startPos, Position endPos) {
++        this.startPos = startPos;
++        this.endPos = endPos;
++    }
++
++    public Movement(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
++        startPos = new Position(filaInicial, columnaInicial);
++        endPos = new Position(filaFinal, columnaFinal);
++    }
++
++    public boolean esVertical() {
+         boolean respuesta = false;
+-        if (startPos.getColumna()==endPos.getColumna())
+-            respuesta= true;
++        if (startPos.getColumna() == endPos.getColumna())
++            respuesta = true;
+         return respuesta;
+         //return startPos.getColumna()==endPos.getColumna();
+     }
+-    private boolean esHorizontal(){
+-        return true;
++    public boolean esHorizontal() {
++       boolean respuesta = false;
++        if (startPos.getFila() == endPos.getFila())
++            respuesta = true;
++        return respuesta;
++    }
++    public Position getstartPos(){return startPos;}
++    public Position getendPos(){return endPos;}
++    public boolean esDiagonal() {
++        return Math.abs(saltoVertical()) == Math.abs(saltoHorizontal());
+     }
+-    private boolean esDiagonal(){
+-        return true;
++    public int saltoVertical() {
++        return (endPos.getFila() - startPos.getFila());
++    }
++    public int saltoHorizontal() {
++        return endPos.getColumna() - startPos.getColumna();
+     }
+ }
+Index: src/Figures/ChessFigure.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/ChessFigure.java b/src/Figures/ChessFigure.java
+--- a/src/Figures/ChessFigure.java	
++++ b/src/Figures/ChessFigure.java	
+@@ -1,4 +1,5 @@
+ package Figures;
++import Mecanicas.*;
+ 
+ public abstract class ChessFigure {
+     private boolean color;
+@@ -27,7 +28,17 @@
+         * */
+     }
+ 
+-    public abstract void movement();
++
++    public abstract boolean movement(Movement mov, Tablero tb);
++        /*if(tb.devuelvePieza(mov.getstartPos().getFila(),mov.getstartPos().getColumna())== Bishop) Bishop.movement(mov);
++        else if(tb.devuelvePieza(i,j)== Horse)
++        else if(tb.devuelvePieza(i,j)== King)
++        else if(tb.devuelvePieza(i,j)== Pawn)
++        else if(tb.devuelvePieza(i,j)== Queen)
++        else // seria rook
++
++        }
++  */
+ 
+ }
+ 
+Index: src/Figures/Pawn.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/Pawn.java b/src/Figures/Pawn.java
+--- a/src/Figures/Pawn.java	
++++ b/src/Figures/Pawn.java	
+@@ -10,7 +10,21 @@
+     }
+ 
+     @Override
+-    public void movement() {
+-        //Move
++    public boolean movement(Movement mov, Tablero tb) {
++        if (mov.saltoVertical() == 1 && getColor() == true)
++            return mov.esVertical();
++        else if ((mov.saltoVertical() == -1 && getColor() == false))
++            return mov.esVertical();
++        else if (mov.esDiagonal() && (mov.saltoVertical() + (mov.saltoHorizontal()) == 2 && getColor() == true) && tb.hayPieza(mov.getendPos()) == true)
++                return mov.esDiagonal();
++        else if (mov.esDiagonal() && (mov.saltoVertical() + (mov.saltoHorizontal()) == -2 && getColor() == false) && tb.hayPieza(mov.getendPos()) == true)
++                return mov.esDiagonal();
++        else if (mov.getstartPos().getFila() == 1 && getColor() == true && mov.saltoVertical() == 2 )
++                return mov.esVertical();
++        else if (mov.getstartPos().getFila() == 6 && getColor() == false && mov.saltoVertical() == -2)
++            return mov.esVertical();
++        else
++            return false;
++
+     }
+ }
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	
++++ b/src/Game.java	
+@@ -1,14 +1,24 @@
+-import Figures.ChessFigure;
++import Mecanicas.Position;
++import Mecanicas.Tablero;
++import Mecanicas.Movement;
+ import java.util.Scanner;
+ 
+ public class Game {
+     private boolean Turn;
+     private String Jugada;
+-    Tablero Tb = new Tablero();
+-    private ChessFigure[][] tableroCopia = Tb.getTableroFichas();
++    private boolean finPartida;
++
+     public Game(boolean Turn){
+         this.Turn=Turn;
+     }
++
++    public boolean getFinPartida() {
++        return this.finPartida;
++    }
++    public void cambiarTurno(){
++        Turn=!Turn;
++    }
++
+     public boolean getTurn(){
+         return Turn;
+     }
+@@ -22,45 +32,60 @@
+      * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
+      * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
+      */
+-    public String pedirInput(){
+-        Scanner scanner = new Scanner(System.in);
+-        boolean jugadaValida=false;
++    public Movement pedirInput(Tablero tb){
++        boolean jugadaValida=false, finPartida=false;
++        Movement mov = null;
+         String turno;
+-        if (getTurn()){
+-            turno= "blancas";
+-        }else
+-            turno="negras";
+-        while (!jugadaValida){
+-            System.out.println("Judador de "+turno+", ingrese la jugada (ej. e2-e4): ");
++
++
++
++        tb.pintarTablero();
++        while (!jugadaValida) {
++            turno = getTurn() ? "blancas" : "negras";
++            Scanner scanner = new Scanner(System.in);
++            System.out.println("Judador de " + turno + ", ingrese la jugada (ej. e2e4): ");
++
+             Jugada = scanner.nextLine();
+             Jugada = Jugada.toUpperCase();
+-            int i,j,k,l;
+-            i = (Jugada.charAt(0)-65);
+-            j = (Jugada.charAt(1)-49);
+-            k = (Jugada.charAt(2)-65);
+-            l = (Jugada.charAt(3)-49);
+-
+-            jugadaValida = false;
+-            if (Jugada.length()!=4){
++            if (Jugada.length() != 4) {
+                 System.out.println("E: Longitud de jugada no valida");
+-            }
+-            else if (Jugada.charAt(1) >='A' && Jugada.charAt(1) <='H' || Jugada.charAt(3) >='A' && Jugada.charAt(3) <='H'){
+-                System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");
+-            }
+-            else if (Jugada.charAt(2) >= 49 && Jugada.charAt(2) <= 56 || Jugada.charAt(4) >=49 && Jugada.charAt(4) <= 56 ){
+-                System.out.println("E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8");
+-            }
+-            else if(tableroCopia[i][j] == null){
+-                System.out.println("Ahí no hay pieza.");}
+-            else if(tableroCopia[i][j].getColor()!=Turn){
+-                System.out.println("Debes mover una ficha de tu color");
+-            }
+-            else if (tableroCopia[i][j].getColor() == tableroCopia[k][l].getColor()){
+-                System.out.println("Que haces comiéndote tu propia ficha? No puedes");}
+-            else
+-                jugadaValida=true;
++            }else {
++                int i, j, k, l;
++                j = Jugada.charAt(0) - 65; //columnaInicial
++                i = Jugada.charAt(1) - 49; //filaInicial
++                l = Jugada.charAt(2) - 65; //columnaFinal
++                k = Jugada.charAt(3) - 49; //filaFinal
++
++                System.out.println(j + "" + i + "" + l + "" + k);
++
++                jugadaValida = false;
++
++                if (i < 0 && i > 7 || k < 0 && k > 7) {
++                    System.out.println("E: Escribe las coordenadas correctamente. Letras de la A a la H");
++                } else if (j <= 0 && j >= 7 || l <= 0 && l >= 7) {
++                    System.out.println("E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8");
++                }
++                //else if(tb.getTableroFichas()[i][j] == null){
++                else if (!tb.hayPieza(i, j)) {
++                    System.out.println("Ahí no hay pieza.");
++                } else if (tb.hayPieza(k, l) && tb.devuelvePieza(k, l).getColor() != Turn) {
++                    System.out.println("Debes mover una ficha de tu color");
++                } else if (tb.hayPieza(k, l) && tb.getTableroFichas()[k][l].getColor() == tb.getTableroFichas()[i][j].getColor()) {
++                    System.out.println("Que haces comiéndote tu propia ficha? No puedes");
++                } else {
++                    jugadaValida = true;
++                    mov = new Movement(new Position(i, j), new Position(k, l));
++                }
++            }
+         }
+-        scanner.close();
+-        return Jugada;
++        setTurno(!Turn);
++        return mov;
+     }
++    /*public String decirResultado(){//metodo que nos da el ganador en un string para hacer el sout en el main
++        if(getTurn() == true && mate== true)
++            resultado="ganan true";
++        else if(getTurn() == false && mate == true)
++            resutlado="ganan false";
++        return resultado;
++    }*/
+ }
+Index: src/Figures/bishop.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/bishop.java b/src/Figures/bishop.java
+--- a/src/Figures/bishop.java	
++++ b/src/Figures/bishop.java	
+@@ -1,4 +1,5 @@
+ package Figures;
++import Mecanicas.*;
+ 
+ public class Bishop extends ChessFigure {
+     public Bishop(boolean color) {
+@@ -10,7 +11,10 @@
+     }
+ 
+     @Override
+-    public void movement() {
+-        //Move
+-    }
+-}
++    public boolean movement(Movement mov, Tablero tb){
++            return mov.esDiagonal();
++        }
++    }
++
++
++
+Index: src/Figures/King.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/King.java b/src/Figures/King.java
+--- a/src/Figures/King.java	
++++ b/src/Figures/King.java	
+@@ -2,7 +2,7 @@
+ 
+ public class King extends ChessFigure {
+     public King(boolean color) {
+-        super( color);
++        super(color);
+         if (color)
+             nameFigure = "[♚]";//negra
+         else
+Index: src/Mecanicas/Tablero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mecanicas/Tablero.java b/src/Mecanicas/Tablero.java
+--- a/src/Mecanicas/Tablero.java	
++++ b/src/Mecanicas/Tablero.java	
+@@ -1,3 +1,5 @@
++package Mecanicas;
++
+ import Figures.*;
+ 
+ public class Tablero {
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -1,4 +1,5 @@
+-//import java.util.Scanner;
++import Mecanicas.Movement;
++import Mecanicas.Tablero;
+ 
+ public class Main {
+     public static void main(String[] args) {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,18 +1,46 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii" />
++    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/ChessFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/ChessFigure.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/bishop.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Movement.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
++    </list>
+     <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier">
++      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
+-    </list>
+-    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay">
+-      <change afterPath="$PROJECT_DIR$/src/Movement.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Position.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
++    </list>
++    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="hsjd">
++      <change beforePath="$PROJECT_DIR$/src/Figures/ChessFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/ChessFigure.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Queen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
+     </list>
+     <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd" />
+     <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
++    <list id="3e008487-23a9-4033-8968-8cb214da2c5b" name="Changes by Nacho" comment="">
++      <change beforePath="$PROJECT_DIR$/src/Figures/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/King.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Figures/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Rook.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -28,6 +56,64 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="LineStatusTrackerManager">
++    <file path="$PROJECT_DIR$/src/Mecanicas/Tablero.java">
++      <ranges>
++        <range start1="0" end1="0" start2="0" end2="2" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="6" end1="8" start2="8" end2="10" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="9" end1="9" start2="11" end2="12" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="18" end1="21" start2="21" end2="26" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="22" end1="24" start2="27" end2="31" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="26" end1="28" start2="33" end2="37" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="39" end1="39" start2="48" end2="49" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
++        <range start1="45" end1="46" start2="55" end2="56" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="50" end1="52" start2="60" end2="68" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
++        <range start1="53" end1="53" start2="69" end2="79" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++      </ranges>
++    </file>
++    <file path="$PROJECT_DIR$/src/Figures/ChessFigure.java">
++      <ranges>
++        <range start1="1" end1="1" start2="1" end2="2" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="3" end1="4" start2="4" end2="5" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="29" end1="30" start2="30" end2="41" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++      </ranges>
++    </file>
++    <file path="$PROJECT_DIR$/src/Figures/King.java">
++      <ranges>
++        <range start1="1" end1="1" start2="1" end2="2" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
++        <range start1="4" end1="5" start2="5" end2="6" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="12" end1="14" start2="13" end2="21" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
++      </ranges>
++    </file>
++    <file path="$PROJECT_DIR$/src/Main.java">
++      <ranges>
++        <range start1="0" end1="1" start2="0" end2="2" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="6" end1="8" start2="7" end2="18" changelist="3e008487-23a9-4033-8968-8cb214da2c5b" />
++      </ranges>
++    </file>
++    <file path="$PROJECT_DIR$/src/Game.java">
++      <ranges>
++        <range start1="0" end1="1" start2="0" end2="3" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="6" end1="8" start2="8" end2="10" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="9" end1="10" start2="11" end2="13" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
++        <range start1="11" end1="11" start2="14" end2="22" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="15" end1="18" start2="26" end2="29" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
++        <range start1="24" end1="27" start2="35" end2="38" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="28" end1="34" start2="39" end2="48" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="36" end1="44" start2="50" end2="51" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="45" end1="61" start2="52" end2="80" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="62" end1="64" start2="81" end2="83" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++        <range start1="65" end1="65" start2="84" end2="91" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++      </ranges>
++    </file>
++    <file path="$PROJECT_DIR$/src/Figures/Pawn.java">
++      <ranges>
++        <range start1="2" end1="2" start2="2" end2="5" changelist="9003e54e-2873-4fab-a760-ff53ea45e63f" />
++        <range start1="11" end1="11" start2="14" end2="23" changelist="eaeacc23-558a-4023-bf3a-6db5dd8c88db" />
++        <range start1="12" end1="14" start2="24" end2="40" changelist="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" />
++      </ranges>
++    </file>
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -39,18 +125,21 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "TODO_SCOPE": "All Places",
+-    "WebServerToolWindowFactoryState": "false",
+-    "jdk.selected.JAVA_MODULE": "11",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
++    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Main" />
+@@ -74,6 +163,16 @@
+       <option name="presentableId" value="Default" />
+       <updated>1674507525661</updated>
+       <workItem from="1674507528623" duration="25826000" />
++      <workItem from="1674636271515" duration="2840000" />
++      <workItem from="1674641093913" duration="8660000" />
++      <workItem from="1674652936997" duration="15898000" />
++      <workItem from="1675085018206" duration="546000" />
++      <workItem from="1675085662650" duration="756000" />
++      <workItem from="1675162381115" duration="9430000" />
++      <workItem from="1675173493390" duration="2582000" />
++      <workItem from="1675252532401" duration="867000" />
++      <workItem from="1675328825766" duration="5513000" />
++      <workItem from="1675416768465" duration="2868000" />
+     </task>
+     <task id="LOCAL-00001" summary="Posiciones con Ascii">
+       <created>1674563780090</created>
+@@ -96,7 +195,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1674581399650</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="Changes by Jesús Garay">
++      <created>1674636404277</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1674636404277</updated>
++    </task>
++    <task id="LOCAL-00005" summary="Changes by Jesús Garay">
++      <created>1674636485080</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1674636485080</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -114,8 +227,25 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
++    <MESSAGE value="adasd" />
++    <MESSAGE value="Changes by Javier" />
+     <MESSAGE value="Posiciones con Ascii" />
+-    <MESSAGE value="adasd" />
+-    <option name="LAST_COMMIT_MESSAGE" value="adasd" />
++    <MESSAGE value="Changes by Jesús Garay" />
++    <MESSAGE value="hsjd" />
++    <option name="LAST_COMMIT_MESSAGE" value="hsjd" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
++          <option name="timeStamp" value="1" />
++        </breakpoint>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="java.lang.NullPointerException" package="java.lang" />
++          <option name="timeStamp" value="4" />
++        </breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+ </project>
+\ No newline at end of file

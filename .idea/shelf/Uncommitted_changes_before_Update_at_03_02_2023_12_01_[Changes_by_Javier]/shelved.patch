@@ -1,0 +1,151 @@
+Index: src/Mecanicas/Position.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Mecanicas;\r\n\r\npublic class Position {\r\n    private int fila;\r\n    private int columna;\r\n\r\n   public Position(int fila, int columna){\r\n        this.fila =fila;\r\n        this.columna = columna;\r\n    }\r\n    public void setFila(int fila) {\r\n        this.fila = fila;\r\n    }\r\n    public void setColumna(int columna){\r\n        this.columna = columna;\r\n    }\r\n\r\n    public int getFila() {return fila;\r\n    }\r\n\r\n    public int getColumna() {return columna;\r\n    }\r\n    @Override\r\n    public String toString() {\r\n       return String.valueOf(fila + columna);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mecanicas/Position.java b/src/Mecanicas/Position.java
+--- a/src/Mecanicas/Position.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Mecanicas/Position.java	(date 1674670246729)
+@@ -4,22 +4,27 @@
+     private int fila;
+     private int columna;
+ 
+-   public Position(int fila, int columna){
++    public Position(int fila, int columna){
+         this.fila =fila;
+         this.columna = columna;
+     }
++
+     public void setFila(int fila) {
+         this.fila = fila;
+     }
++
+     public void setColumna(int columna){
+         this.columna = columna;
+     }
+ 
+-    public int getFila() {return fila;
++    public int getFila() {
++       return fila;
+     }
+ 
+-    public int getColumna() {return columna;
++    public int getColumna() {
++       return columna;
+     }
++
+     @Override
+     public String toString() {
+        return String.valueOf(fila + columna);
+Index: src/Figures/Pawn.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Figures;\r\n\r\npublic class Pawn extends ChessFigure {\r\n    public Pawn(boolean color) {\r\n        super(color);\r\n        if (color)\r\n            nameFigure = \"[♟]\";//negra\r\n        else\r\n            nameFigure = \"[♙]\";\r\n    }\r\n\r\n    @Override\r\n    public void movement() {\r\n        //Move\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/Pawn.java b/src/Figures/Pawn.java
+--- a/src/Figures/Pawn.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Figures/Pawn.java	(date 1675176046943)
+@@ -1,5 +1,8 @@
+ package Figures;
+ 
++import Mecanicas.Movement;
++import Mecanicas.Tablero;
++
+ public class Pawn extends ChessFigure {
+     public Pawn(boolean color) {
+         super(color);
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Figures.ChessFigure;\r\nimport java.util.Scanner;\r\n\r\npublic class Game {\r\n    private boolean Turn;\r\n    private String Jugada;\r\n    Tablero Tb = new Tablero();\r\n    private ChessFigure[][] tableroCopia = Tb.getTableroFichas();\r\n    public Game(boolean Turn){\r\n        this.Turn=Turn;\r\n    }\r\n    public boolean getTurn(){\r\n        return Turn;\r\n    }\r\n\r\n    // public void setTurn(){\r\n    //     this.Turn=Turn;\r\n    // }\r\n\r\n    /**\r\n     * @return pedirInput\r\n     * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas\r\n     * de tu propio color entre otras. El Método te devuelve la jugada \"validada\" para que las clases movimiento o posición puedan recibirlas.\r\n     */\r\n    public String pedirInput(){\r\n        Scanner scanner = new Scanner(System.in);\r\n        boolean jugadaValida=false;\r\n        String turno;\r\n        if (getTurn()){\r\n            turno= \"blancas\";\r\n        }else\r\n            turno=\"negras\";\r\n        while (!jugadaValida){\r\n            System.out.println(\"Judador de \"+turno+\", ingrese la jugada (ej. e2-e4): \");\r\n            Jugada = scanner.nextLine();\r\n            Jugada = Jugada.toUpperCase();\r\n            int i,j,k,l;\r\n            i = (Jugada.charAt(0)-65);\r\n            j = (Jugada.charAt(1)-49);\r\n            k = (Jugada.charAt(2)-65);\r\n            l = (Jugada.charAt(3)-49);\r\n\r\n            jugadaValida = false;\r\n            if (Jugada.length()!=4){\r\n                System.out.println(\"E: Longitud de jugada no valida\");\r\n            }\r\n            else if (Jugada.charAt(1) >='A' && Jugada.charAt(1) <='H' || Jugada.charAt(3) >='A' && Jugada.charAt(3) <='H'){\r\n                System.out.println(\"E: Escribe las coordenadas correctamente. Letras de la A a la H\");\r\n            }\r\n            else if (Jugada.charAt(2) >= 49 && Jugada.charAt(2) <= 56 || Jugada.charAt(4) >=49 && Jugada.charAt(4) <= 56 ){\r\n                System.out.println(\"E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8\");\r\n            }\r\n            else if(tableroCopia[i][j] == null){\r\n                System.out.println(\"Ahí no hay pieza.\");}\r\n            else if(tableroCopia[i][j].getColor()!=Turn){\r\n                System.out.println(\"Debes mover una ficha de tu color\");\r\n            }\r\n            else if (tableroCopia[i][j].getColor() == tableroCopia[k][l].getColor()){\r\n                System.out.println(\"Que haces comiéndote tu propia ficha? No puedes\");}\r\n            else\r\n                jugadaValida=true;\r\n        }\r\n        scanner.close();\r\n        return Jugada;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Game.java	(date 1675418748201)
+@@ -7,15 +7,16 @@
+     Tablero Tb = new Tablero();
+     private ChessFigure[][] tableroCopia = Tb.getTableroFichas();
+     public Game(boolean Turn){
+-        this.Turn=Turn;
++        this.finPartida = false;
++        this.Turn = Turn;
+     }
+     public boolean getTurn(){
+         return Turn;
+     }
+ 
+-    // public void setTurn(){
+-    //     this.Turn=Turn;
+-    // }
++    public void setTurno(boolean turno) {
++        this.Turn = turno;
++    }
+ 
+     /**
+      * @return pedirInput
+Index: src/Figures/horse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Figures;\r\n\r\npublic class Horse extends ChessFigure {\r\n    public Horse(boolean color) {\r\n        super( color);\r\n        if (color)\r\n            nameFigure = \"[♞]\";//negra\r\n        else\r\n            nameFigure = \"[♘]\";\r\n    }\r\n\r\n    @Override\r\n    public void movement() {\r\n        //Move\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/horse.java b/src/Figures/horse.java
+--- a/src/Figures/horse.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Figures/horse.java	(date 1675175907939)
+@@ -1,17 +1,17 @@
+ package Figures;
++import Mecanicas.*;
+ 
+ public class Horse extends ChessFigure {
+     public Horse(boolean color) {
+-        super( color);
++        super(color);
+         if (color)
+             nameFigure = "[♞]";//negra
+         else
+-            nameFigure = "[♘]";
++            nameFigure = "[♘]";//blanca
+     }
+ 
+     @Override
+-    public void movement() {
+-        //Move
++    public boolean movement(Movement mov, Tablero tb) {
++        return (mov.saltoVertical()==1 && mov.saltoHorizontal() == 2 || mov.saltoHorizontal() == 2 && mov.saltoVertical() == 1);
+     }
+-
+ }
+Index: src/Mecanicas/Tablero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Figures.*;\r\n\r\npublic class Tablero {\r\n    private ChessFigure tableroFichas[][] = new ChessFigure[8][8];\r\n    // [FILAS][COLUMNAS]\r\n\r\n    public ChessFigure[][] getTableroFichas(){\r\n            return tableroFichas;\r\n    }\r\n    public Tablero() {\r\n\r\n        //Peon\r\n        for (int i = 0; i < 8; i++)\r\n            tableroFichas[1][i] = new Pawn(true); // negras\r\n        for (int i = 0; i < 8; i++)\r\n            tableroFichas[6][i] = new Pawn(false);// blancas\r\n\r\n        //Torres\r\n        tableroFichas[0][0] = new Rook(true); tableroFichas[0][7] = new Rook(true); //negras\r\n        tableroFichas[7][0] = new Rook(false); tableroFichas[7][7] = new Rook(false); //blancas\r\n        \r\n        //Caballo\r\n        tableroFichas[0][1] = new Horse(true); tableroFichas[0][6] = new Horse(true); //negras\r\n        tableroFichas[7][1] = new Horse(false); tableroFichas[7][6] = new Horse(false); //blancas\r\n\r\n        //Alphiles\r\n        tableroFichas[0][2] = new Bishop(true); tableroFichas[0][5] = new Bishop(true); //negras\r\n        tableroFichas[7][2] = new Bishop(false); tableroFichas[7][5] = new Bishop(false); //blancas\r\n\r\n        //Dama\r\n        tableroFichas[0][3] = new Queen(true);//negras\r\n        tableroFichas[7][3] = new Queen(false);//blancas\r\n\r\n        //Rey\r\n        tableroFichas[0][4] = new King(true);//negras\r\n        tableroFichas[7][4] = new King(false);//blancas\r\n\r\n    }\r\n\r\n    public void pintarTablero() {\r\n        for (int i = 0; i < tableroFichas.length; i++) {\r\n            for (int j = 0; j < tableroFichas.length; j++) {\r\n                if (tableroFichas[i][j] != null)\r\n                    System.out.print(tableroFichas[i][j].getNameFigure());\r\n                else\r\n                    System.out.print(\"[  ]\");\r\n            }\r\n            System.out.println();\r\n        }\r\n    }\r\n    public boolean hayPieza(int fila, int columna){\r\n        return tableroFichas[fila][columna]==null;\r\n    }\r\n\r\n    public ChessFigure devuelvePieza(int k, int l) {\r\n        return tableroFichas[k][l];\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mecanicas/Tablero.java b/src/Mecanicas/Tablero.java
+--- a/src/Mecanicas/Tablero.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Mecanicas/Tablero.java	(date 1675174805278)
+@@ -48,8 +48,14 @@
+             System.out.println();
+         }
+     }
+-    public boolean hayPieza(int fila, int columna){
+-        return tableroFichas[fila][columna]==null;
++
++    public void moverPieza(Movement mov) {
++        tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
++        tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
++    }
++
++    public boolean hayPieza(int fila, int columna) {
++        return tableroFichas[fila][columna]!= null;
+     }
+ 
+     public ChessFigure devuelvePieza(int k, int l) {

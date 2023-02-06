@@ -1,0 +1,377 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch	
++++ /dev/null	
+@@ -1,137 +0,0 @@
+-Index: src/Game.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import Figures.ChessFigure;\r\nimport java.util.Scanner;\r\n\r\npublic class Game {\r\n    private boolean Turn;\r\n    private String Jugada;\r\n    Tablero Tb = new Tablero();\r\n    private ChessFigure[][] tableroCopia = Tb.getTableroFichas();\r\n    public Game(boolean Turn){\r\n        this.Turn=Turn;\r\n    }\r\n    public boolean getTurn(){\r\n        return Turn;\r\n    }\r\n    // public void setTurn(){\r\n    //     this.Turn=Turn;\r\n    // }\r\n    public String pedirInput(){\r\n        Scanner scanner = new Scanner(System.in);\r\n        boolean jugadaValida=false;\r\n        String turno;\r\n        if (getTurn()){\r\n            turno= \"blancas\";\r\n        }else\r\n            turno=\"negras\";\r\n        while (!jugadaValida){\r\n            System.out.println(\"Judador de\"+turno+\", ingrese la jugada (ej. e2-e4): \");\r\n            Jugada = scanner.nextLine();\r\n            Jugada = Jugada.toUpperCase();\r\n            int i,j,k,l;\r\n            i = (Jugada.charAt(0)-65);\r\n            j = (Jugada.charAt(1)-49);\r\n            k = (Jugada.charAt(2)-65);\r\n            l = (Jugada.charAt(3)-49);\r\n\r\n            jugadaValida = false;\r\n            if (Jugada.length()!=4){\r\n                System.out.println(\"E: Longitud de jugada no valida\");\r\n\r\n            }\r\n            else if (Jugada.charAt(1) >='A' && Jugada.charAt(1) <='H' || Jugada.charAt(3) >='A' && Jugada.charAt(3) <='H'){\r\n                System.out.println(\"E: Escribe las coordenadas correctamente. Letras de la A a la H\");\r\n            }\r\n            else if (Jugada.charAt(2) >= 49 && Jugada.charAt(2) <= 56 || Jugada.charAt(4) >=49 && Jugada.charAt(4) <= 56 ){\r\n                System.out.println(\"E: Escribe las coordenadas correctamente. Números comprendidos del 1 al 8\");\r\n            }\r\n            else if(tableroCopia[i][j] == null){\r\n                System.out.println(\"Ahí no hay pieza.\");}\r\n            else if(tableroCopia[i][j].getColor()!=Turn){\r\n                System.out.println(\"Debes mover una ficha de tu color\");\r\n            }\r\n            else if (tableroCopia[i][j].getColor() == tableroCopia[k][l].getColor()){\r\n                System.out.println(\"Que haces comiéndote tu propia ficha? No puedes\");}\r\n            else\r\n                jugadaValida=true;\r\n        }\r\n        scanner.close();\r\n        return Jugada;\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Game.java b/src/Game.java
+---- a/src/Game.java	(revision 117e88449587f3e3890a26e76cfee966e7b29ae7)
+-+++ b/src/Game.java	(date 1674638691366)
+-@@ -24,7 +24,7 @@
+-         }else
+-             turno="negras";
+-         while (!jugadaValida){
+--            System.out.println("Judador de"+turno+", ingrese la jugada (ej. e2-e4): ");
+-+            System.out.println("Judador de "+turno+", ingrese la jugada (ej. e2-e4): ");
+-             Jugada = scanner.nextLine();
+-             Jugada = Jugada.toUpperCase();
+-             int i,j,k,l;
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3ea5be81-bc81-4d7d-acd7-5ca3ff957570\" name=\"Changes\" comment=\"Posiciones con Ascii\" />\r\n    <list id=\"9003e54e-2873-4fab-a760-ff53ea45e63f\" name=\"Changes by Javier\" comment=\"Changes by Javier\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Figures/horse.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Figures/horse.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"eaeacc23-558a-4023-bf3a-6db5dd8c88db\" name=\"Changes by Jesús Garay\" comment=\"Changes by Jesús Garay\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/Movement.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Game.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Game.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Position.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Position.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Tablero.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Tablero.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"82432f85-4863-4886-9f4a-51314407cbd5\" name=\"Changes by Nachetto\" comment=\"adasd\" />\r\n    <list id=\"afcad349-4892-433f-adae-123d4c17f77d\" name=\"Changes by NachettoCuloprieto\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Kk93h0e3bEnmCZAqvqiKmR41J8\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"TODO_SCOPE\": \"All Places\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"11\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"AjedrezFinal\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3ea5be81-bc81-4d7d-acd7-5ca3ff957570\" name=\"Changes\" comment=\"\" />\r\n      <created>1674507525661</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1674507525661</updated>\r\n      <workItem from=\"1674507528623\" duration=\"25826000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Posiciones con Ascii\">\r\n      <created>1674563780090</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674563780090</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Posiciones con Ascii\">\r\n      <created>1674581327514</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674581327514</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"adasd\">\r\n      <created>1674581399650</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674581399650</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Posiciones con Ascii\" />\r\n    <MESSAGE value=\"adasd\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"adasd\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 117e88449587f3e3890a26e76cfee966e7b29ae7)
+-+++ b/.idea/workspace.xml	(date 1674644144847)
+-@@ -1,16 +1,14 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii" />
+-+    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
+-+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+-+    </list>
+-     <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier">
+-       <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
+-     </list>
+--    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay">
+--      <change afterPath="$PROJECT_DIR$/src/Movement.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
+--    </list>
+-+    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay" />
+-     <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd" />
+-     <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
+-     <option name="SHOW_DIALOG" value="false" />
+-@@ -39,18 +37,18 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent"><![CDATA[{
+--  "keyToString": {
+--    "RunOnceActivity.OpenProjectViewOnStart": "true",
+--    "RunOnceActivity.ShowReadmeOnStart": "true",
+--    "TODO_SCOPE": "All Places",
+--    "WebServerToolWindowFactoryState": "false",
+--    "jdk.selected.JAVA_MODULE": "11",
+--    "project.structure.last.edited": "Modules",
+--    "project.structure.proportion": "0.0",
+--    "project.structure.side.proportion": "0.0"
+-+  <component name="PropertiesComponent">{
+-+  &quot;keyToString&quot;: {
+-+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+-+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+-+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+-   }
+--}]]></component>
+-+}</component>
+-   <component name="RunManager">
+-     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-       <option name="MAIN_CLASS_NAME" value="Main" />
+-@@ -74,6 +72,8 @@
+-       <option name="presentableId" value="Default" />
+-       <updated>1674507525661</updated>
+-       <workItem from="1674507528623" duration="25826000" />
+-+      <workItem from="1674636271515" duration="2840000" />
+-+      <workItem from="1674641093913" duration="210000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="Posiciones con Ascii">
+-       <created>1674563780090</created>
+-@@ -96,7 +96,21 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1674581399650</updated>
+-     </task>
+--    <option name="localTasksCounter" value="4" />
+-+    <task id="LOCAL-00004" summary="Changes by Jesús Garay">
+-+      <created>1674636404277</created>
+-+      <option name="number" value="00004" />
+-+      <option name="presentableId" value="LOCAL-00004" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1674636404277</updated>
+-+    </task>
+-+    <task id="LOCAL-00005" summary="Changes by Jesús Garay">
+-+      <created>1674636485080</created>
+-+      <option name="number" value="00005" />
+-+      <option name="presentableId" value="LOCAL-00005" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1674636485080</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="6" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -114,8 +128,20 @@
+-     </option>
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-+    <MESSAGE value="adasd" />
+-     <MESSAGE value="Posiciones con Ascii" />
+--    <MESSAGE value="adasd" />
+--    <option name="LAST_COMMIT_MESSAGE" value="adasd" />
+-+    <MESSAGE value="Changes by Jesús Garay" />
+-+    <MESSAGE value="Changes by Javier" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Javier" />
+-+  </component>
+-+  <component name="XDebuggerManager">
+-+    <breakpoint-manager>
+-+      <breakpoints>
+-+        <breakpoint enabled="true" type="java-exception">
+-+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+-+          <option name="timeStamp" value="1" />
+-+        </breakpoint>
+-+      </breakpoints>
+-+    </breakpoint-manager>
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]" date="1674644166217" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/01/2023 11:56 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch	
++++ /dev/null	
+@@ -1,106 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3ea5be81-bc81-4d7d-acd7-5ca3ff957570\" name=\"Changes\" comment=\"Posiciones con Ascii\" />\r\n    <list id=\"9003e54e-2873-4fab-a760-ff53ea45e63f\" name=\"Changes by Javier\" comment=\"Changes by Javier\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Figures/horse.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Figures/horse.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"eaeacc23-558a-4023-bf3a-6db5dd8c88db\" name=\"Changes by Jesús Garay\" comment=\"Changes by Jesús Garay\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/Movement.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Game.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Game.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Position.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Position.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Tablero.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Tablero.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"82432f85-4863-4886-9f4a-51314407cbd5\" name=\"Changes by Nachetto\" comment=\"adasd\" />\r\n    <list id=\"afcad349-4892-433f-adae-123d4c17f77d\" name=\"Changes by NachettoCuloprieto\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Kk93h0e3bEnmCZAqvqiKmR41J8\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"TODO_SCOPE\": \"All Places\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"11\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"AjedrezFinal\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3ea5be81-bc81-4d7d-acd7-5ca3ff957570\" name=\"Changes\" comment=\"\" />\r\n      <created>1674507525661</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1674507525661</updated>\r\n      <workItem from=\"1674507528623\" duration=\"25826000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Posiciones con Ascii\">\r\n      <created>1674563780090</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674563780090</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Posiciones con Ascii\">\r\n      <created>1674581327514</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674581327514</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"adasd\">\r\n      <created>1674581399650</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1674581399650</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Posiciones con Ascii\" />\r\n    <MESSAGE value=\"adasd\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"adasd\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 243142ed68987795b49b03ab6767d78f8a5de87c)
+-+++ b/.idea/workspace.xml	(date 1674637981054)
+-@@ -1,16 +1,13 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii" />
+-+    <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="Posiciones con Ascii">
+-+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+    </list>
+-     <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier">
+-       <change beforePath="$PROJECT_DIR$/src/Figures/horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/horse.java" afterDir="false" />
+-     </list>
+--    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay">
+--      <change afterPath="$PROJECT_DIR$/src/Movement.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tablero.java" afterDir="false" />
+--    </list>
+-+    <list id="eaeacc23-558a-4023-bf3a-6db5dd8c88db" name="Changes by Jesús Garay" comment="Changes by Jesús Garay" />
+-     <list id="82432f85-4863-4886-9f4a-51314407cbd5" name="Changes by Nachetto" comment="adasd" />
+-     <list id="afcad349-4892-433f-adae-123d4c17f77d" name="Changes by NachettoCuloprieto" comment="" />
+-     <option name="SHOW_DIALOG" value="false" />
+-@@ -39,18 +36,18 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent"><![CDATA[{
+--  "keyToString": {
+--    "RunOnceActivity.OpenProjectViewOnStart": "true",
+--    "RunOnceActivity.ShowReadmeOnStart": "true",
+--    "TODO_SCOPE": "All Places",
+--    "WebServerToolWindowFactoryState": "false",
+--    "jdk.selected.JAVA_MODULE": "11",
+--    "project.structure.last.edited": "Modules",
+--    "project.structure.proportion": "0.0",
+--    "project.structure.side.proportion": "0.0"
+-+  <component name="PropertiesComponent">{
+-+  &quot;keyToString&quot;: {
+-+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+-+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+-+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+-   }
+--}]]></component>
+-+}</component>
+-   <component name="RunManager">
+-     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-       <option name="MAIN_CLASS_NAME" value="Main" />
+-@@ -74,6 +71,7 @@
+-       <option name="presentableId" value="Default" />
+-       <updated>1674507525661</updated>
+-       <workItem from="1674507528623" duration="25826000" />
+-+      <workItem from="1674636271515" duration="1687000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="Posiciones con Ascii">
+-       <created>1674563780090</created>
+-@@ -96,7 +94,21 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1674581399650</updated>
+-     </task>
+--    <option name="localTasksCounter" value="4" />
+-+    <task id="LOCAL-00004" summary="Changes by Jesús Garay">
+-+      <created>1674636404277</created>
+-+      <option name="number" value="00004" />
+-+      <option name="presentableId" value="LOCAL-00004" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1674636404277</updated>
+-+    </task>
+-+    <task id="LOCAL-00005" summary="Changes by Jesús Garay">
+-+      <created>1674636485080</created>
+-+      <option name="number" value="00005" />
+-+      <option name="presentableId" value="LOCAL-00005" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1674636485080</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="6" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -114,8 +126,10 @@
+-     </option>
+-   </component>
+-   <component name="VcsManagerConfiguration">
+--    <MESSAGE value="Posiciones con Ascii" />
+-     <MESSAGE value="adasd" />
+--    <option name="LAST_COMMIT_MESSAGE" value="adasd" />
+-+    <MESSAGE value="Posiciones con Ascii" />
+-+    <MESSAGE value="Changes by Jesús Garay" />
+-+    <MESSAGE value="Changes by Javier" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Javier" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch	
++++ /dev/null	
+@@ -1,30 +0,0 @@
+-Index: src/Figures/horse.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package Figures;\r\n\r\npublic class Horse extends ChessFigure {\r\n    public Horse(boolean color) {\r\n        super( color);\r\n        if (color)\r\n            nameFigure = \"[♞]\";//negra\r\n        else\r\n            nameFigure = \"[♘]\";\r\n    }\r\n\r\n    @Override\r\n    public void movement() {\r\n        //Move\r\n    }\r\n\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Figures/horse.java b/src/Figures/horse.java
+---- a/src/Figures/horse.java	(revision 117e88449587f3e3890a26e76cfee966e7b29ae7)
+-+++ b/src/Figures/horse.java	(date 1674638019713)
+-@@ -2,16 +2,15 @@
+- 
+- public class Horse extends ChessFigure {
+-     public Horse(boolean color) {
+--        super( color);
+-+        super(color);
+-         if (color)
+-             nameFigure = "[♞]";//negra
+-         else
+--            nameFigure = "[♘]";
+-+            nameFigure = "[♘]";//blanca
+-     }
+- 
+-     @Override
+-     public void movement() {
+--        //Move
+-+        //Hace movimiento
+-     }
+--
+- }
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch	
++++ /dev/null	
+@@ -1,28 +0,0 @@
+-Index: src/Figures/horse.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package Figures;\r\n\r\npublic class horse {\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/Figures/horse.java b/src/Figures/horse.java
+---- a/src/Figures/horse.java	(revision 243142ed68987795b49b03ab6767d78f8a5de87c)
+-+++ b/src/Figures/horse.java	(date 1674636700656)
+-@@ -1,4 +1,16 @@
+- package Figures;
+- 
+--public class horse {
+-+public class Horse extends ChessFigure {
+-+    public Horse(boolean color) {
+-+        super(color);
+-+        if (color)
+-+            nameFigure = "[♞]";//negra
+-+        else
+-+            nameFigure = "[♘]";//blanca
+-+    }
+-+
+-+    @Override
+-+    public void movement() {
+-+        //Hace movimiento
+-+    }
+- }
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]" date="1674638021028" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/01/2023 10:13 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56__Changes_by_Javier_.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]" date="1674644165454" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_11_56_[Changes_by_Javier]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/01/2023 11:56 [Changes by Javier]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13__Changes_by_Javier_.xml	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]" date="1674638020291" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_01_2023_10_13_[Changes_by_Javier]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/01/2023 10:13 [Changes by Javier]" />
+-</changelist>
+\ No newline at end of file
