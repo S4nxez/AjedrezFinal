@@ -16,6 +16,7 @@ public class Main {
                c.moverPieza(mov);
                h.cambiarTurno();
                System.out.println(c.isEnrroque());
+               System.out.println(c.hayPiezaEntre(mov));
            }
         }
         //System.out.println("Ganan "+h.decirResultado());

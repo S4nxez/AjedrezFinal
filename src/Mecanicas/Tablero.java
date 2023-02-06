@@ -92,15 +92,33 @@ public class Tablero {
     public boolean hayPiezaEntre(Movement mov){
         boolean respuesta = false;
         if (mov.esDiagonal()){
-            if (mov.getstartPos().getFila() > mov.getendPos().getFila()){
+            if (mov.getstartPos().getFila() < mov.getendPos().getFila() && mov.getstartPos().getColumna() < mov.getendPos().getColumna()){
+                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i++, j++) {
+                    if (hayPieza(i,j)){
+                        respuesta=true;
+                    }
+                }
+            }
+            else if (mov.getstartPos().getFila() > mov.getendPos().getFila() && mov.getstartPos().getColumna() < mov.getendPos().getColumna()){
+                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i--, j++) {
+                    if (hayPieza(i,j)){
+                        respuesta=true;
+                    }
+                }
+            }
+            else if (mov.getstartPos().getFila() > mov.getendPos().getFila() && mov.getstartPos().getColumna() > mov.getendPos().getColumna()){
                 for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i--, j--) {
                     if (hayPieza(i,j)){
                         respuesta=true;
                     }
                 }
             }
-            else if () {
-
+            else if (mov.getstartPos().getFila() < mov.getendPos().getFila() && mov.getstartPos().getColumna() > mov.getendPos().getColumna()){
+                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i--, j--) {
+                    if (hayPieza(i,j)){
+                        respuesta=true;
+                    }
+                }
             }
         }
         else if(mov.esHorizontal() && !mov.esVertical()){
@@ -109,7 +127,7 @@ public class Tablero {
             int col2= mov.getendPos().getColumna();
             if (col1>col2) {
                 for (int j = col1; j < col2; j++) {
-                    if (!hayPieza(i,j)){
+                    if (hayPieza(i,j)){
                         return false;
                     }
                     else return true;
@@ -117,7 +135,7 @@ public class Tablero {
             }
             else {
                 for (int j = col1; j < col1; j++) {
-                    if (!hayPieza(i,j)){
+                    if (hayPieza(i,j)){
                         return false;
                     }
                     else return true;
@@ -130,20 +148,19 @@ public class Tablero {
             int fila2= mov.getendPos().getFila();
             if (fila1>fila2){
                 for (int i = fila1; i > fila1 ; i++) {
-                    if (!hayPieza(i,j))
+                    if (hayPieza(i,j))
                         respuesta=true;
                 }
             }
             else{
                 for (int i = fila1; i < fila2; i++) {
-                    if (!hayPieza(i,j))
+                    if (hayPieza(i,j))
                         respuesta=true;
                 }
             }
         }
         return respuesta;
     }
-
     public boolean quitaPieza(int fila, int columna){return tableroFichas[fila][columna]==null;}
     public boolean quitaPieza(Position pos){
         return quitaPieza(null);}
