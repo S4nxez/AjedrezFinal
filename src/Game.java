@@ -3,6 +3,7 @@ import Mecanicas.Tablero;
 import Mecanicas.Movement;
 import java.util.Scanner;
 
+
 public class Game {
     
     Scanner scanner = new Scanner(System.in);

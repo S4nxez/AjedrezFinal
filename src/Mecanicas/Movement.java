@@ -1,14 +1,15 @@
 package Mecanicas;
 
 /**
- *
+ *Movimiento
+ * @author NDJ
  */
 public class Movement {
     private Position startPos;
     private Position endPos;
 
     /**
-     *
+     *Constructor del movimiento con posición inicial y posición final
      * @param startPos
      * @param endPos
      */
@@ -18,7 +19,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Construsctor del movimiento con posición inicial y posición final
      * @param filaInicial
      * @param columnaInicial
      * @param filaFinal
@@ -30,7 +31,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para saber si el movimiento es vertical
      * @return
      */
     public boolean esVertical() {
@@ -42,7 +43,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para saber si el movimiento
      * @return
      */
     public boolean esHorizontal() {
