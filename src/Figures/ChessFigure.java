@@ -52,8 +52,8 @@ public abstract class ChessFigure {
     }
 
 
-    /*public abstract boolean movement(Movement mov, Tablero tb);
-        if(tb.devuelvePieza(mov.getstartPos().getFila(),mov.getstartPos().getColumna())== Bishop) Bishop.movement(mov);
+    public abstract boolean movement(Movement mov, Tablero tb);
+        /*if(tb.devuelvePieza(mov.getstartPos().getFila(),mov.getstartPos().getColumna())== Bishop) Bishop.movement(mov);
         else if(tb.devuelvePieza(i,j)== Horse)
         else if(tb.devuelvePieza(i,j)== King)
         else if(tb.devuelvePieza(i,j)== Pawn)
