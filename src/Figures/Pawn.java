@@ -2,7 +2,10 @@ package Figures;
 
 import Mecanicas.Movement;
 import Mecanicas.Tablero;
-
+ /**
+  * Peon
+  * @author NDJ
+  */
 public class Pawn extends ChessFigure {
     public Pawn(boolean color) {
         super(color);
@@ -11,6 +14,13 @@ public class Pawn extends ChessFigure {
         else
             nameFigure = "[♙]";
     }
+
+     /**
+      * Método para regular el movimiento del peon
+      * @param mov
+      * @param tb
+      * @return
+      */
     @Override
     public boolean movement(Movement mov, Tablero tb) {
         if (mov.esDiagonal() && mov.saltoVertical()==1 && getColor() == true && tb.hayPieza(mov.getendPos()) == true)

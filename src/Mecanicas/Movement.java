@@ -9,7 +9,11 @@ public class Movement {
     private Position endPos;
 
     /**
+<<<<<<< HEAD
      *Constructor del movimiento con posición inicial y posición final
+=======
+     *Constructor del movimiento con posicion final e inicial
+>>>>>>> 0f9b289b1b7ddab6416a69076c48758d2fb08647
      * @param startPos
      * @param endPos
      */
@@ -19,7 +23,11 @@ public class Movement {
     }
 
     /**
+<<<<<<< HEAD
      *Construsctor del movimiento con posición inicial y posición final
+=======
+     *Constructor del movimiento con filas y columnas al inicio y final del movimiento
+>>>>>>> 0f9b289b1b7ddab6416a69076c48758d2fb08647
      * @param filaInicial
      * @param columnaInicial
      * @param filaFinal
@@ -31,7 +39,11 @@ public class Movement {
     }
 
     /**
+<<<<<<< HEAD
      *Método para saber si el movimiento es vertical
+=======
+     *Método para comprabar si un movimiento es vertical
+>>>>>>> 0f9b289b1b7ddab6416a69076c48758d2fb08647
      * @return
      */
     public boolean esVertical() {
@@ -43,7 +55,11 @@ public class Movement {
     }
 
     /**
+<<<<<<< HEAD
      *Método para saber si el movimiento
+=======
+     *Método para comprobar si un movimiento es horizontal
+>>>>>>> 0f9b289b1b7ddab6416a69076c48758d2fb08647
      * @return
      */
     public boolean esHorizontal() {
@@ -54,7 +70,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para comprobar si un movimiento es diagonal
      * @return
      */
     public boolean esDiagonal() {
@@ -62,20 +78,20 @@ public class Movement {
     }
 
     /**
-     *
+     *Getter de la posición inicial
      * @return
      */
 
     public Position getstartPos(){return startPos;}
 
     /**
-     *
+     *Getter de la posición final
      * @return
      */
     public Position getendPos(){return endPos;}
 
     /**
-     *
+     *Método para saber si un moviemiento es un salto vertical
      * @return
      */
 
@@ -84,7 +100,7 @@ public class Movement {
     }
 
     /**
-     *
+     *Método para saber si un movimiento es un salto horizontal
      * @return
      */
     public int saltoHorizontal() {

@@ -1,0 +1,113 @@
+Index: src/Figures/King.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Figures;\r\n\r\npublic class King extends ChessFigure {\r\n    public King(boolean color) {\r\n        super( color);\r\n        if (color)\r\n            nameFigure = \"[♚]\";//negra\r\n        else\r\n            nameFigure = \"[♔]\";\r\n    }\r\n\r\n    @Override\r\n    public void movement() {\r\n        //Move\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/King.java b/src/Figures/King.java
+--- a/src/Figures/King.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Figures/King.java	(date 1675169649554)
+@@ -1,4 +1,5 @@
+ package Figures;
++import Mecanicas.*;
+ 
+ public class King extends ChessFigure {
+     public King(boolean color) {
+@@ -10,7 +11,13 @@
+     }
+ 
+     @Override
+-    public void movement() {
+-        //Move
++    public boolean movement(Movement mov, Tablero tb) {
++        if (mov.esDiagonal()&&(Math.abs(mov.saltoVertical()) + Math.abs(mov.saltoHorizontal()) == 2 ))
++            return mov.esDiagonal();
++        else if (Math.abs(mov.saltoHorizontal())==1)
++            return mov.esHorizontal();
++        else if (mov.saltoVertical()==1)
++            return mov.esVertical();
++        else return false;
+     }
+ }
+Index: src/Mecanicas/Tablero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Figures.*;\r\n\r\npublic class Tablero {\r\n    private ChessFigure tableroFichas[][] = new ChessFigure[8][8];\r\n    // [FILAS][COLUMNAS]\r\n\r\n    public ChessFigure[][] getTableroFichas(){\r\n            return tableroFichas;\r\n    }\r\n    public Tablero() {\r\n\r\n        //Peon\r\n        for (int i = 0; i < 8; i++)\r\n            tableroFichas[1][i] = new Pawn(true); // negras\r\n        for (int i = 0; i < 8; i++)\r\n            tableroFichas[6][i] = new Pawn(false);// blancas\r\n\r\n        //Torres\r\n        tableroFichas[0][0] = new Rook(true); tableroFichas[0][7] = new Rook(true); //negras\r\n        tableroFichas[7][0] = new Rook(false); tableroFichas[7][7] = new Rook(false); //blancas\r\n        \r\n        //Caballo\r\n        tableroFichas[0][1] = new Horse(true); tableroFichas[0][6] = new Horse(true); //negras\r\n        tableroFichas[7][1] = new Horse(false); tableroFichas[7][6] = new Horse(false); //blancas\r\n\r\n        //Alphiles\r\n        tableroFichas[0][2] = new Bishop(true); tableroFichas[0][5] = new Bishop(true); //negras\r\n        tableroFichas[7][2] = new Bishop(false); tableroFichas[7][5] = new Bishop(false); //blancas\r\n\r\n        //Dama\r\n        tableroFichas[0][3] = new Queen(true);//negras\r\n        tableroFichas[7][3] = new Queen(false);//blancas\r\n\r\n        //Rey\r\n        tableroFichas[0][4] = new King(true);//negras\r\n        tableroFichas[7][4] = new King(false);//blancas\r\n\r\n    }\r\n\r\n    public void pintarTablero() {\r\n        for (int i = 0; i < tableroFichas.length; i++) {\r\n            for (int j = 0; j < tableroFichas.length; j++) {\r\n                if (tableroFichas[i][j] != null)\r\n                    System.out.print(tableroFichas[i][j].getNameFigure());\r\n                else\r\n                    System.out.print(\"[  ]\");\r\n            }\r\n            System.out.println();\r\n        }\r\n    }\r\n    public boolean hayPieza(int fila, int columna){\r\n        return tableroFichas[fila][columna]==null;\r\n    }\r\n\r\n    public ChessFigure devuelvePieza(int k, int l) {\r\n        return tableroFichas[k][l];\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mecanicas/Tablero.java b/src/Mecanicas/Tablero.java
+--- a/src/Mecanicas/Tablero.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Mecanicas/Tablero.java	(date 1675174805278)
+@@ -37,6 +37,7 @@
+ 
+     }
+ 
++
+     public void pintarTablero() {
+         for (int i = 0; i < tableroFichas.length; i++) {
+             for (int j = 0; j < tableroFichas.length; j++) {
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//import java.util.Scanner;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n        Tablero c = new Tablero();\r\n        Game h = new Game(true);\r\n        c.pintarTablero();\r\n        h.pedirInput();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Main.java	(date 1675417642659)
+@@ -4,7 +4,16 @@
+     public static void main(String[] args) {
+         Tablero c = new Tablero();
+         Game h = new Game(true);
+-        c.pintarTablero();
+-        h.pedirInput();
++        Movement mov= null;
++        while(!h.getFinPartida()){
++            mov = h.pedirInput(c);
++           if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c))
++               System.out.println("Error, la pieza no se puede mover así");
++           else{
++               c.moverPieza(mov);
++               h.cambiarTurno();
++           }
++        }
++        //System.out.println("Ganan "+h.decirResultado());
+     }
+ }
+\ No newline at end of file
+Index: src/Figures/Rook.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Figures;\r\n\r\npublic class Rook extends ChessFigure {\r\n    public Rook(boolean color) {\r\n        super(color);\r\n        if (color)\r\n            nameFigure = \"[♜]\";//negra\r\n        else\r\n            nameFigure = \"[♖]\";\r\n    }\r\n\r\n    @Override\r\n    public void movement() {\r\n        //Move\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Figures/Rook.java b/src/Figures/Rook.java
+--- a/src/Figures/Rook.java	(revision ab0de602896d9863b3634f5a976d5774856b73b2)
++++ b/src/Figures/Rook.java	(date 1675175416729)
+@@ -1,5 +1,8 @@
+ package Figures;
+ 
++import Mecanicas.Movement;
++import Mecanicas.Tablero;
++
+ public class Rook extends ChessFigure {
+     public Rook(boolean color) {
+         super(color);
+@@ -9,8 +12,8 @@
+             nameFigure = "[♖]";
+     }
+ 
+-    @Override
+-    public void movement() {
+-        //Move
++
++    public boolean movement(Movement mov, Tablero tb) {
++        return mov.esHorizontal()|| mov.esVertical();
+     }
+-}
++}
+\ No newline at end of file

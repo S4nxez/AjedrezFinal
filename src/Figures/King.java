@@ -1,6 +1,10 @@
 package Figures;
 import Mecanicas.*;
 
+/**
+ * Rey
+ * @author NDJ
+ */
 public class King extends ChessFigure {
     public King(boolean color) {
         super(color);
@@ -10,7 +14,11 @@ public class King extends ChessFigure {
             nameFigure = "[♔]";
     }
 
+
+    // Variable para saber si el rey ha sido movido (Requerido para el jaque)
+
     private boolean kingMoved = false;
+    
 
     public void setKingMoved(boolean kingMoved) {
         this.kingMoved = kingMoved;
