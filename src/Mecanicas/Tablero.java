@@ -114,7 +114,7 @@ public class Tablero {
                 }
             }
             else if (mov.getstartPos().getFila() > mov.getendPos().getFila() && mov.getstartPos().getColumna() > mov.getendPos().getColumna()){
-                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i == (mov.getendPos().getFila()); i--, j--) {
+                for (int i = mov.getstartPos().getFila(), j=mov.getstartPos().getColumna(); i > (mov.getendPos().getFila()); i--, j--) {
                     if (hayPieza(i,j)){
                         respuesta=true;
                     }

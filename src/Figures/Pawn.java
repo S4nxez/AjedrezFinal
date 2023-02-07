@@ -21,9 +21,9 @@ public class Pawn extends ChessFigure {
 
      /**
       * Método para regular el movimiento del peon
-      * @param mov
-      * @param tb
-      * @return
+      * @param mov recibe el movimiento a realizar para ahora verificar si es correcto
+      * @param tb recibe las posiciones del tablero
+      * @return devuelve la validación del movimiento que quería devolver el usuario
       */
     @Override
     public boolean movement(Movement mov, Tablero tb) {
