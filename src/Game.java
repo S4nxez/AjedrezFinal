@@ -3,7 +3,6 @@ import Mecanicas.Tablero;
 import Mecanicas.Movement;
 import java.util.Scanner;
 
-
 public class Game {
     
     Scanner scanner = new Scanner(System.in);
@@ -32,10 +31,16 @@ public class Game {
         this.Turn = turno;
     }
 
-    /**
+   /* /**
      * @return pedirInput
      * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
      * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
+     */
+
+    /**
+     * Método para pedir al usuario la jugada que quiere realiza y evaluar si es v
+     * @param tb
+     * @return
      */
     public Movement pedirInput(Tablero tb){
         boolean jugadaValida=false, finPartida=false;

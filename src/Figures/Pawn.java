@@ -7,6 +7,10 @@ import Mecanicas.Tablero;
   * @author NDJ
   */
 public class Pawn extends ChessFigure {
+     /**
+      * Método para definir el color de la ficha y asignarle su apariencia
+      * @param color
+      */
     public Pawn(boolean color) {
         super(color);
         if (color)

@@ -2,6 +2,10 @@ package Mecanicas;
 
 import Figures.*;
 
+/**
+ * Tablero
+ * @author NDJ
+ */
 public class Tablero {
     private ChessFigure tableroFichas[][] = new ChessFigure[8][8];
     // [FILAS][COLUMNAS]
@@ -17,6 +21,9 @@ public class Tablero {
         this.enrroque = enrroque;
     }
 
+    /**
+     * Método para asignar fichas a las posiciones del tablero
+     */
     public Tablero() {
 
         //Peon
@@ -58,7 +65,7 @@ public class Tablero {
         for (int i = 0; i < tableroFichas.length; i++) {
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
-                    System.out.print(tableroFichas[i][j].getNameFigure(i,j));
+                    System.out.print(tableroFichas[i][j].getNameFigure(i, j));
                 else
                     System.out.print("[ ]");
             }
