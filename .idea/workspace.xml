@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea5be81-bc81-4d7d-acd7-5ca3ff957570" name="Changes" comment="hsjd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figures/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figures/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mecanicas/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Movement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mecanicas/Tablero.java" afterDir="false" />
     </list>
     <list id="9003e54e-2873-4fab-a760-ff53ea45e63f" name="Changes by Javier" comment="Changes by Javier" />
@@ -97,6 +98,8 @@
       <workItem from="1675326741493" duration="4714000" />
       <workItem from="1675691946482" duration="3434000" />
       <workItem from="1675768663272" duration="6043000" />
+      <workItem from="1675843191185" duration="4561000" />
+      <workItem from="1675861176023" duration="729000" />
     </task>
     <task id="LOCAL-00001" summary="Posiciones con Ascii">
       <created>1674563780090</created>
@@ -170,20 +173,30 @@
           <option name="timeStamp" value="4" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Mecanicas/Movement.java</url>
+          <line>88</line>
+          <properties class="Mecanicas.Movement" method="esDiagonal">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Mecanicas/Tablero.java</url>
-          <line>98</line>
+          <line>96</line>
           <properties class="Mecanicas.Tablero" method="hayPiezaEntre">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Mecanicas/Movement.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="respuesta" />
+        <watch expression="respuesta" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

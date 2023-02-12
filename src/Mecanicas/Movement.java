@@ -52,15 +52,6 @@ public class Movement {
             respuesta = true;
         return respuesta;
     }
-
-    /**
-     *Método para comprobar si un movimiento es diagonal
-     * @return
-     */
-    public boolean esDiagonal() {
-        return Math.abs(saltoVertical()) == Math.abs(saltoHorizontal());
-    }
-
     /**
      *Getter de la posición inicial
      * @return
@@ -90,4 +81,16 @@ public class Movement {
     public int saltoHorizontal() {
         return endPos.getColumna() - startPos.getColumna();
     }
+
+    /**
+     *Método para comprobar si un movimiento es diagonal
+     * @return
+     */
+    public boolean esDiagonal() {
+        boolean respuesta = false;
+        if (Math.abs(saltoVertical()) == Math.abs(saltoHorizontal()))
+            respuesta=true;
+        return respuesta;
+    }
+
 }

@@ -10,8 +10,11 @@ public class Main {
         Movement mov= null;
         while(!h.getFinPartida()){
             mov = h.pedirInput(c);
-           if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c) && c.hayPiezaEntre(mov))
+           if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c))
                System.out.println("Error, la pieza no se puede mover así");
+           else if(c.hayPiezaEntre(mov))
+               System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento.");
+
            else{
                c.moverPieza(mov);
                h.cambiarTurno();
