@@ -10,6 +10,7 @@ public class Main {
         Movement mov= null;
         while(!h.getFinPartida()){
             mov = h.pedirInput(c);
+            System.out.println("La pieza es "+c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna())); 
            if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c))
                System.out.println("Error, la pieza no se puede mover así");
            else if(c.hayPiezaEntre(mov))
@@ -17,9 +18,10 @@ public class Main {
 
            else{
                c.moverPieza(mov);
+               c.peonFinal(mov);
                h.cambiarTurno();
-               System.out.println(c.isEnrroque());
-               System.out.println(c.hayPiezaEntre(mov));
+               //System.out.println(c.isEnrroque());
+               //System.out.println(c.hayPiezaEntre(mov));
            }
         }
         //System.out.println("Ganan "+h.decirResultado());

@@ -50,6 +50,16 @@ public abstract class ChessFigure {
             ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
         * */
     }
+    
+    public String getNameFigure() {
+        return nameFigure;
+        /*
+            ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
+            ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟
+            ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙
+            ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖
+        * */
+    }
 
 
     public abstract boolean movement(Movement mov, Tablero tb);

@@ -68,7 +68,7 @@ public class Tablero {
         for (int i = 0; i < tableroFichas.length; i++) {
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
-                    System.out.print(tableroFichas[i][j].getNameFigure(i, j));
+                    System.out.print(tableroFichas[i][j].getNameFigure());
                 else
                     System.out.print("[ ]");
             }
@@ -191,11 +191,58 @@ public class Tablero {
                 }
             }
         }
-    
-    
-    
-    
         return respuesta;
+    }
+    public void peonFinal(Movement mov){
+        //si hay un peon en la fila1 o fila8 se le pregunta al usuario la ficha por la que se quiere cambiar.
+        if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♙]" && mov.getendPos().getFila()==0){
+            quitaPieza(0,mov.getendPos().getColumna());
+            int fichanueva=0;
+            while (fichanueva==0){
+                System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
+                switch(fichanueva){
+                    case 1://reina
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Queen(false);
+                    break;
+                    case 2://alfil
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Bishop(false);
+                    break;
+                    case 3://caballo
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Horse(false);
+                    break;
+                    case 4://torre
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Rook(false);
+                    break;
+                    default:
+                    System.out.println("Elija un número dentro del rango establecido");
+                    fichanueva=0;
+                }
+            }
+        }
+        else if(devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♟]" && mov.getendPos().getFila()==7){
+            quitaPieza(7,mov.getendPos().getColumna());
+            int fichanueva=0;
+            while (fichanueva==0){
+                System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
+                switch(fichanueva){
+                    case 1://reina
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Queen(true);
+                    break;
+                    case 2://alfil
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Bishop(true);
+                    break;
+                    case 3://caballo
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Horse(true);
+                    break;
+                    case 4://torre
+                    tableroFichas[7][mov.getendPos().getColumna()] = new Rook(true);
+                    break;
+                    default:
+                    System.out.println("Elija un número dentro del rango establecido");
+                    fichanueva=0;
+                }
+            }
+        }
     }
 
     public boolean quitaPieza(int fila, int columna) {
