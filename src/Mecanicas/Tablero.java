@@ -1,5 +1,7 @@
 package Mecanicas;
 
+import java.util.Scanner;
+
 import Figures.*;
 
 /**
@@ -30,12 +32,13 @@ public class Tablero {
      */
     public Tablero() {
 
-        // Peon
+        /* Peon
         for (int i = 0; i < 8; i++)
             tableroFichas[1][i] = new Pawn(true); // negras
         for (int i = 0; i < 8; i++)
             tableroFichas[6][i] = new Pawn(false);// blancas
-
+*/
+        tableroFichas[1][1]= new Pawn(false);
         // Torres
         tableroFichas[0][0] = new Rook(true);
         tableroFichas[0][7] = new Rook(true); // negras
@@ -43,7 +46,7 @@ public class Tablero {
         tableroFichas[7][7] = new Rook(false); // blancas
 
         // Caballo
-        tableroFichas[0][1] = new Horse(true);
+        //tableroFichas[0][1] = new Horse(true);
         tableroFichas[0][6] = new Horse(true); // negras
         tableroFichas[7][1] = new Horse(false);
         tableroFichas[7][6] = new Horse(false); // blancas
@@ -64,17 +67,21 @@ public class Tablero {
 
     }
 
-    public void pintarTablero() {
+       public void pintarTablero() {
+        System.out.println("  [A]  [B]  [C]  [D]  [E]  [F]  [G]  [H]");
         for (int i = 0; i < tableroFichas.length; i++) {
+            System.out.print((i+1) + " ");
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
-                    System.out.print(tableroFichas[i][j].getNameFigure());
+                    System.out.print(tableroFichas[i][j].getNameFigure() + " ");
                 else
-                    System.out.print("[ ]");
+                    System.out.print("[ ] ");
             }
             System.out.println();
         }
     }
+
+
 
     public ChessFigure devuelvePieza(int fila, int columna) {
         return tableroFichas[fila][columna];
@@ -195,23 +202,25 @@ public class Tablero {
     }
     public void peonFinal(Movement mov){
         //si hay un peon en la fila1 o fila8 se le pregunta al usuario la ficha por la que se quiere cambiar.
+        Scanner sc = new Scanner(System.in);
         if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♙]" && mov.getendPos().getFila()==0){
             quitaPieza(0,mov.getendPos().getColumna());
             int fichanueva=0;
             while (fichanueva==0){
                 System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
+                fichanueva=sc.nextInt();
                 switch(fichanueva){
                     case 1://reina
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Queen(false);
+                    tableroFichas[0][mov.getendPos().getColumna()] = new Queen(false);
                     break;
                     case 2://alfil
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Bishop(false);
+                    tableroFichas[0][mov.getendPos().getColumna()] = new Bishop(false);
                     break;
                     case 3://caballo
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Horse(false);
+                    tableroFichas[0][mov.getendPos().getColumna()] = new Horse(false);
                     break;
                     case 4://torre
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Rook(false);
+                    tableroFichas[0][mov.getendPos().getColumna()] = new Rook(false);
                     break;
                     default:
                     System.out.println("Elija un número dentro del rango establecido");
@@ -224,6 +233,7 @@ public class Tablero {
             int fichanueva=0;
             while (fichanueva==0){
                 System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
+                fichanueva=sc.nextInt();
                 switch(fichanueva){
                     case 1://reina
                     tableroFichas[7][mov.getendPos().getColumna()] = new Queen(true);
@@ -243,14 +253,15 @@ public class Tablero {
                 }
             }
         }
+        
     }
 
-    public boolean quitaPieza(int fila, int columna) {
-        return tableroFichas[fila][columna] == null;
+    public void quitaPieza(int fila, int columna) {
+        tableroFichas[fila][columna] = null;
     }
 
-    public boolean quitaPieza(Position pos) {
-        return quitaPieza(null);
-    }
+//    public boolean quitaPieza(Position pos) {
+//        return quitaPieza(null);
+//    }
 
 }

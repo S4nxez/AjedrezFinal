@@ -13,9 +13,8 @@ public class Main {
             System.out.println("La pieza es "+c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna())); 
            if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c))
                System.out.println("Error, la pieza no se puede mover así");
-           else if(c.hayPiezaEntre(mov))
-               System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento.");
-
+           /*else if(c.hayPiezaEntre(mov))
+               System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento."); */
            else{
                c.moverPieza(mov);
                c.peonFinal(mov);
