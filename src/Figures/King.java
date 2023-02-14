@@ -52,8 +52,25 @@ public class King extends ChessFigure {
             return true;
         else if (Math.abs(mov.saltoVertical())==1 && mov.esVertical())
             return true;
-        else if(Math.abs(mov.saltoHorizontal())==2 && mov.esHorizontal() && tb.isEnroque())
-            return true;
+        else if(Math.abs(mov.saltoHorizontal())==2 && mov.esHorizontal() ){//si se mueve 2 porque el enroque esta habilitado...
+            isKingMoved();
+            if (getColor()==true){
+                if (mov.saltoHorizontal()==-2){
+                    //activas un metodo EN TABLERO para que quite la torre izquierda y la ponga una a la derecha del rey (efectuando enrroque(){quitarpieza(torreizquierda);tableroFichas[posicion derecha del rey] = new Rook(true);})
+                }
+                if (mov.saltoHorizontal()==2){
+                    //activas un metodo EN TABLERO para que quite la torre derecha y la ponga una a la derecha del rey "" "" ""
+                }
+            }
+            if (getColor()==false){
+                if (mov.saltoHorizontal()==-2){
+                    //activas un metodo EN TABLERO para que quite la torre izquierda y la ponga una a la derecha del rey (efectuando enrroque(){quitarpieza(torreizquierda);tableroFichas[posicion derecha del rey] = new Rook(false);})
+                }
+                if (mov.saltoHorizontal()==2){
+                    //activas un metodo EN TABLERO para que quite la torre derecha y la ponga una a la derecha del rey "" "" ""
+                }
+            }
+            return true;}
         else return false;
     }
 }
