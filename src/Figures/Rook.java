@@ -37,6 +37,7 @@ public class Rook extends ChessFigure {
         return rookMoved;
     }
 
+
     /**
      * Método para regular el movimiento de la torre
      * @param mov

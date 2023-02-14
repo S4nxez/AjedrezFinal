@@ -10,21 +10,27 @@ import Figures.*;
  * @author NDJ
  */
 public class Tablero {
-    private ChessFigure tableroFichas[][] = new ChessFigure[8][8];
-
-    // [FILAS][COLUMNAS]
+    private ChessFigure tableroFichas[][] = new ChessFigure[8][8];// [FILAS][COLUMNAS]
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
 
-    private boolean enrroque = true;
+    private boolean enroque = true;
 
-    public boolean isEnrroque() {
-        return enrroque;
+    public boolean isEnroque() {
+        return enroque;
     }
 
-    public void setEnrroque(boolean enrroque) {
-        this.enrroque = enrroque;
+    public void setEnroque(boolean enroque) {
+        this.enroque = enroque;
+    }
+    public void enroque() {
+        if (tableroFichas[0][0] == null ||
+                tableroFichas[7][0] == null ||
+                tableroFichas[0][7] == null ||
+                tableroFichas[7][7] == null) {
+            enroque = false;
+        }
     }
 
     /**
@@ -32,13 +38,11 @@ public class Tablero {
      */
     public Tablero() {
 
-        /* Peon
+        //Peon
         for (int i = 0; i < 8; i++)
             tableroFichas[1][i] = new Pawn(true); // negras
         for (int i = 0; i < 8; i++)
             tableroFichas[6][i] = new Pawn(false);// blancas
-*/
-        tableroFichas[1][1]= new Pawn(false);
         // Torres
         tableroFichas[0][0] = new Rook(true);
         tableroFichas[0][7] = new Rook(true); // negras
@@ -46,12 +50,12 @@ public class Tablero {
         tableroFichas[7][7] = new Rook(false); // blancas
 
         // Caballo
-        //tableroFichas[0][1] = new Horse(true);
+        tableroFichas[0][1] = new Horse(true);
         tableroFichas[0][6] = new Horse(true); // negras
         tableroFichas[7][1] = new Horse(false);
         tableroFichas[7][6] = new Horse(false); // blancas
 
-        // Alphiles
+        // Alfiles
         tableroFichas[0][2] = new Bishop(true);
         tableroFichas[0][5] = new Bishop(true); // negras
         tableroFichas[7][2] = new Bishop(false);
@@ -68,18 +72,18 @@ public class Tablero {
     }
 
        public void pintarTablero() {
-        System.out.println("  [A]  [B]  [C]  [D]  [E]  [F]  [G]  [H]");
+        System.out.println("  [A]  [B]  [C] [D] [E]  [F]  [G]  [H]");
         for (int i = 0; i < tableroFichas.length; i++) {
             System.out.print((i+1) + " ");
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
                     System.out.print(tableroFichas[i][j].getNameFigure() + " ");
                 else
-                    System.out.print("[ ] ");
+                    System.out.print("[⛚] ");
             }
             System.out.println();
         }
-    }
+       }
 
 
 
@@ -91,15 +95,6 @@ public class Tablero {
         tableroFichas[mov.getendPos().getFila()][mov.getendPos()
                 .getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
         tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
-    }
-
-    public void enrroque() {
-        if (tableroFichas[0][0] == null ||
-                tableroFichas[7][0] == null ||
-                tableroFichas[0][7] == null ||
-                tableroFichas[7][7] == null) {
-            enrroque = false;
-        }
     }
 
     public boolean hayPieza(int fila, int columna) {
@@ -115,32 +110,32 @@ public class Tablero {
         if (mov.esDiagonal()) {
             if (mov.getstartPos().getFila() < mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() < mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila(),
-                        j = mov.getstartPos().getColumna(); i < mov.getendPos().getFila() - 1; i++, j++) {
+                for (int i = mov.getstartPos().getFila() +1,
+                        j = mov.getstartPos().getColumna() +1; i < mov.getendPos().getFila() - 1; i++, j++) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() > mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() < mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila(),
-                        j = mov.getstartPos().getColumna(); i > mov.getendPos().getFila() + 1; i--, j++) {
+                for (int i = mov.getstartPos().getFila()-1,
+                        j = mov.getstartPos().getColumna()+1; i > mov.getendPos().getFila() + 1; i--, j++) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() > mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() > mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila(),
-                        j = mov.getstartPos().getColumna(); i > mov.getendPos().getFila() + 1; i--, j--) {
+                for (int i = mov.getstartPos().getFila()-1,
+                        j = mov.getstartPos().getColumna()-1; i > mov.getendPos().getFila() + 1; i--, j--) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() < mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() > mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila(),
-                        j = mov.getstartPos().getColumna(); i < mov.getendPos().getFila() - 1; i++, j--) {
+                for (int i = mov.getstartPos().getFila()+1,
+                        j = mov.getstartPos().getColumna()-1; i < mov.getendPos().getFila() - 1; i++, j--) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
@@ -171,7 +166,7 @@ public class Tablero {
             int j = mov.getstartPos().getColumna();
             int fila1= mov.getstartPos().getFila();
             int fila2= mov.getendPos().getFila();
-            if (fila1 > fila2){
+            if (fila1 > fila2){//peones blancos
                 if(mov.getstartPos().getFila() == 6){
                     for (int i=fila1-1; i>fila2; i--){
                         if (hayPieza(i,j)){
@@ -179,21 +174,25 @@ public class Tablero {
                         }
                     }
                 } else {
-                    if (fila2-fila1!=1 || fila2-fila1!=2){
-                        respuesta = true;
-                    } else {
-                        for (int i=fila1-1; i>fila2; i--){
-                            if (hayPieza(i,j)){
-                                respuesta=true;
-                            }
+                    if (fila2-fila1==1){
+                        if (hayPieza(fila2,j)){
+                            respuesta=true;
                         }
                     }
                 }
             }
-            else if (fila1 < fila2){
-                for (int i=fila1+1; i<fila2; i++){
-                    if (hayPieza(i,j)){
-                        respuesta=true;
+            else if (fila1 < fila2){//peones negros
+                if (fila1-fila2!=1) {
+                    for (int i = fila1 + 1; i < fila2; i++) {
+                        if (hayPieza(i, j)) {
+                            respuesta = true;
+                        }
+                    }
+                } else {
+                    if (fila1-fila2==1){
+                        if (hayPieza(fila2,j)){
+                            respuesta=true;
+                        }
                     }
                 }
             }
@@ -263,5 +262,6 @@ public class Tablero {
 //    public boolean quitaPieza(Position pos) {
 //        return quitaPieza(null);
 //    }
+
 
 }

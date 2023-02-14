@@ -52,6 +52,8 @@ public class King extends ChessFigure {
             return true;
         else if (Math.abs(mov.saltoVertical())==1 && mov.esVertical())
             return true;
+        else if(Math.abs(mov.saltoHorizontal())==2 && mov.esHorizontal() && tb.isEnroque())
+            return true;
         else return false;
     }
 }
