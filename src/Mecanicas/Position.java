@@ -54,8 +54,9 @@ public class Position {
      *ToString para devolver la posición
      * @return
      */
-    @Override
-    public String toString() {
+    //@Override
+   /* public String toString() {
        return String.valueOf(fila + columna);
-    }
+    }*/
+
 }

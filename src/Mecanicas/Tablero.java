@@ -14,16 +14,6 @@ public class Tablero {
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
-    public String deteccionEnroque(Movement mov) {
-        int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
-        if (tableroFichas[0][0] == null)ul++;
-        if(tableroFichas[7][0] == null)ur++;
-        if(tableroFichas[0][7] == null)dl++;
-        if(tableroFichas[7][7] == null)dr++;
-        if(tableroFichas[0][4] == null)mt++;
-        if(tableroFichas[7][4] == null)mb++;
-        return ul+ur+dl+dr+mt+mb+"";
-    }
 
     /**
      * Método para asignar fichas a las posiciones del tablero
@@ -42,20 +32,20 @@ public class Tablero {
         tableroFichas[7][7] = new Rook(false); // blancas
 
         // Caballo
-        tableroFichas[0][1] = new Horse(true);
+        //tableroFichas[0][1] = new Horse(true);
         tableroFichas[0][6] = new Horse(true); // negras
-        tableroFichas[7][1] = new Horse(false);
+        //tableroFichas[7][1] = new Horse(false);
         tableroFichas[7][6] = new Horse(false); // blancas
 
         // Alfiles
-        tableroFichas[0][2] = new Bishop(true);
+        //tableroFichas[0][2] = new Bishop(true);
         tableroFichas[0][5] = new Bishop(true); // negras
-        tableroFichas[7][2] = new Bishop(false);
+        //tableroFichas[7][2] = new Bishop(false);
         tableroFichas[7][5] = new Bishop(false); // blancas
 
         // Dama
-        tableroFichas[0][3] = new Queen(true);// negras
-        tableroFichas[7][3] = new Queen(false);// blancas
+        //tableroFichas[0][3] = new Queen(true);// negras
+        //tableroFichas[7][3] = new Queen(false);// blancas
 
         // Rey
         tableroFichas[0][4] = new King(true);// negras
@@ -250,6 +240,49 @@ public class Tablero {
     public void quitaPieza(int fila, int columna) {
         tableroFichas[fila][columna] = null;
     }
+    public String deteccionEnroque(Movement mov) {
+        int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
+        if (tableroFichas[0][0] == null)ul++;
+        if(tableroFichas[7][0] == null)ur++;
+        if(tableroFichas[0][7] == null)dl++;
+        if(tableroFichas[7][7] == null)dr++;
+        if(tableroFichas[0][4] == null)mt++;
+        if(tableroFichas[7][4] == null)mb++;
+        return "" + ul + ur + dl + dr + mt + mb;
+
+    }
+    public void efectuarenroque(boolean color, String tipo, Movement mov){
+        if (color==true){
+            if (tipo=="largo"){
+                quitaPieza(0,0);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()+1]=new Rook(true);
+            }
+            if (tipo=="corto"){
+                quitaPieza(0,7);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()-1]=new Rook(true);
+            }
+        }
+        if (color==false){
+            if (tipo=="largo"){
+                quitaPieza(7,0);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()+1]=new Rook(false);
+            }
+            if (tipo=="corto"){
+                quitaPieza(7,7);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()-1]=new Rook(false);
+            }
+        }
+    }
+
+    /*public boolean jaque(Tablero tb, Movement mov){
+        mov = new Movement(new Position(i, j), new Position(k, l));//esto te lo has sacado de los huevos
+        boolean amenaza=false;
+        while(!amenaza){
+            for(int i=0;i<8;i++){
+
+            }
+        }
+    }*/
 
 //    public boolean quitaPieza(Position pos) {
 //        return quitaPieza(null);
