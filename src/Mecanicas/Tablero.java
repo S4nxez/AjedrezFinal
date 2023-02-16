@@ -14,13 +14,15 @@ public class Tablero {
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
-    public void deteccionEnroque(Movement mov) {
-        int ul=0, ur=0, dl=0, dr=0;//up down left right
+    public String deteccionEnroque(Movement mov) {
+        int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
         if (tableroFichas[0][0] == null)ul++;
         if(tableroFichas[7][0] == null)ur++;
         if(tableroFichas[0][7] == null)dl++;
         if(tableroFichas[7][7] == null)dr++;
-
+        if(tableroFichas[0][4] == null)mt++;
+        if(tableroFichas[7][4] == null)mb++;
+        return ul+ur+dl+dr+mt+mb+"";
     }
 
     /**
