@@ -6,9 +6,8 @@ import java.util.Scanner;
 public class Game {
     
     Scanner scanner = new Scanner(System.in);
-    private boolean Turn;
-    private String Jugada;
-    private boolean finPartida;
+    private boolean Turn;private boolean jaquemate;private boolean finPartida;
+    private String Jugada; private String resultado;
 
     public Game(boolean Turn){
         this.finPartida = false;
@@ -19,10 +18,6 @@ public class Game {
         return this.finPartida;
     }
 
-    public void cambiarTurno(){
-        Turn=!Turn;
-    }
-
     public boolean getTurn(){
         return Turn;
     }
@@ -31,24 +26,28 @@ public class Game {
         this.Turn = turno;
     }
 
-   /* /**
-     * @return pedirInput
+    public void cambiarTurno(){
+        Turn=!Turn;
+    }
+
+    public boolean isJaquemate() {
+        return jaquemate;
+    }
+
+    public void setJaquemate(boolean jaquemate) {
+        this.jaquemate = jaquemate;
+    }
+    /*
      * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
      * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
-     */
-
-    /**
-     * Método para pedir al usuario la jugada que quiere realiza y evaluar si es v
      * @param tb
-     * @return
+     * @return pedirInput
      */
+       
     public Movement pedirInput(Tablero tb){
-        boolean jugadaValida=false, finPartida=false;
+        boolean jugadaValida=false;
         Movement mov = null;
         String turno;
-
-
-
 
         while (!jugadaValida) {
             tb.pintarTablero();
@@ -90,11 +89,15 @@ public class Game {
         }
         return mov;
     }
-    /*public String decirResultado(){//metodo que nos da el ganador en un string para hacer el sout en el main
-        if(getTurn() == true && mate== true)
+    /**
+     * Método que nos da el ganador en un string para hacer el sout en el main.
+     * @return resutado del ganador de la partida
+     */
+    public String decirResultado(){
+        if(getTurn() == true && jaquemate== true)
             resultado="ganan true";
-        else if(getTurn() == false && mate == true)
-            resutlado="ganan false";
+        else if(getTurn() == false && jaquemate == true)
+            resultado="ganan false";
         return resultado;
-    }*/
+    }
 }

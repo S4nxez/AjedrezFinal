@@ -51,9 +51,17 @@ public class King extends ChessFigure {
                     }
                     if (mov.saltoHorizontal()==2){
                         //activas un metodo EN TABLERO para que quite la torre derecha y la ponga una a la derecha del rey "" "" ""
+                        for (int j = 3, i=7; j > 6; j++) {
+                            if (tb.hayPieza(i,j)){
+                                respuesta=false;
+                            }
+                        }
+                        if(respuesta){
+                            tb.efectuarenroque(true, "corto",mov);
+                        }
                     }
                 }
-                if (get==false && tb.deteccionEnroque(mov).charAt(6)==0 /*si el rey blanco no se ha movido de su posicion inicial*/){
+                if (getColor()==false && tb.deteccionEnroque(mov).charAt(6)==0 /*si el rey blanco no se ha movido de su posicion inicial*/){
                     if (mov.saltoHorizontal()==-2){
                         //activas un metodo EN TABLERO para que quite la torre izquierda y la ponga una a la derecha del rey (efectuando enrroque(){quitarpieza(torreizquierda);tableroFichas[posicion derecha del rey] = new Rook(false);})
 
@@ -70,13 +78,13 @@ public class King extends ChessFigure {
                     }
                     if (mov.saltoHorizontal()==2){
                         //activas un metodo EN TABLERO para que quite la torre derecha y la ponga una a la derecha del rey "" "" ""
-                        for (int j = 3, i=7; j > 0; j++) {
+                        for (int j = 3, i=7; j > 6; j++) {
                             if (tb.hayPieza(i,j)){
                                 respuesta=false;
                             }
                         }
                         if(respuesta){
-                            tb.efectuarenroque(false, "largo",mov);
+                            tb.efectuarenroque(false, "corto",mov);
                         }
                     }
                 }
