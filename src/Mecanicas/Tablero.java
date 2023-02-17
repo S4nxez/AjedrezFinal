@@ -14,6 +14,15 @@ public class Tablero {
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
+    private boolean haciendoenroque=false;
+
+    public boolean isHaciendoenroque() {
+        return haciendoenroque;
+    }
+
+    public void setHaciendoenroque(boolean haciendoenroque) {
+        this.haciendoenroque = haciendoenroque;
+    }
 
     /**
      * Método para asignar fichas a las posiciones del tablero
@@ -251,6 +260,7 @@ public class Tablero {
         return "" + ul + ur + dl + dr + mt + mb;
 
     }
+
     public void efectuarenroque(boolean color, String tipo, Movement mov){
         if (color==true){
             if (tipo=="largo"){
