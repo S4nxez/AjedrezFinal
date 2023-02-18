@@ -14,7 +14,7 @@ public class Position {
      * @param columna
      */
     public Position(int fila, int columna){
-        this.fila =fila;
+        this.fila = fila;
         this.columna = columna;
     }
 

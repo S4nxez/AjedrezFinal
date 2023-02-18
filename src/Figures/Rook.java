@@ -7,7 +7,12 @@ import Mecanicas.Tablero;
  * Torre
  * @author NDJ
  */
-public class Rook extends ChessFigure {
+public class
+
+
+
+
+Rook extends ChessFigure {
     /**
      * Método para definir el color de la ficha y asignarle su apariencia
      * @param color
