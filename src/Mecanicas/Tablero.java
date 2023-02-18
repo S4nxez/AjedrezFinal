@@ -292,19 +292,19 @@ public class Tablero {
         boolean amenaza=false;
         boolean turno;
         turno = turn.getTurn();
-        while(!amenaza){ //este bucle es infinito si no le hacen jaque
+        while(!amenaza){ //este bucle es infinito si no le hacen jaque siempre returnea true el metodo
             //busca vertical arriba
             //no se si las piezas que he puesto coinciden bien con el turno y hay que usar el equals creo
             for (int i=mov.getstartPos().getColumna()-1;i!=0;i--){
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
-                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
+                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
             //busca vertical abajo
             for (int i = 7-mov.getstartPos().getColumna(); i !=0; i--) {
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
                 }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
@@ -312,20 +312,21 @@ public class Tablero {
             }
             //busca hotizontal derecha
             for (int i=mov.getstartPos().getFila()-1;i!=0;i--){
-                if(tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                if(tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
-                }else if (tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
+                }else if (tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
             //busca hotizontal derecha
             for (int i = 7-mov.getstartPos().getFila(); i !=0; i--) {
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
-                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
+                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
+            //busca diagonal
         }
         if (amenaza) return true;
         else return false;
