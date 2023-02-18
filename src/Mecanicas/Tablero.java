@@ -302,6 +302,7 @@ public class Tablero {
                     amenaza=true;
                 }
             }
+            //busca vertical abajo
             for (int i = 7-mov.getstartPos().getColumna(); i !=0; i--) {
                 if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
@@ -309,11 +310,24 @@ public class Tablero {
                     amenaza=true;
                 }
             }
-
-
+            //busca hotizontal derecha
+            for (int i=mov.getstartPos().getFila()-1;i!=0;i--){
+                if(tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                    amenaza=true;
+                }else if (tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
+                    amenaza=true;
+                }
+            }
+            //busca hotizontal derecha
+            for (int i = 7-mov.getstartPos().getFila(); i !=0; i--) {
+                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
+                    amenaza=true;
+                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
+                    amenaza=true;
+                }
+            }
         }
         if (amenaza) return true;
         else return false;
     }
-
 }
