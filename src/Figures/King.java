@@ -27,12 +27,12 @@ public class King extends ChessFigure {
     @Override
     public boolean movement(Movement mov, Tablero tb) {
         boolean respuesta =false;
-        if (mov.esDiagonal()&&(Math.abs(mov.saltoVertical()) + Math.abs(mov.saltoHorizontal()) == 2 ))
+        if (mov.esDiagonal()&&(Math.abs(mov.saltoVertical()) + Math.abs(mov.saltoHorizontal()) == 2 )&& !tb.hayPiezaEntre(mov))
             respuesta= true;
-        else if (Math.abs(mov.saltoVertical())==1 && mov.esVertical())
+        else if (Math.abs(mov.saltoVertical())==1 && mov.esVertical()&& !tb.hayPiezaEntre(mov))
             respuesta= true;
         else if (mov.esHorizontal()){
-            if (Math.abs(mov.saltoHorizontal())==1)
+            if (Math.abs(mov.saltoHorizontal())==1 && !tb.hayPiezaEntre(mov))
                 respuesta= true;
             if(mov.saltoHorizontal()==2 || mov.saltoHorizontal()==-2){
                 if (getColor()==true && tb.deteccionEnroque(mov).charAt(5)=='0' /*si el rey negro no se ha movido de su posicion inicial*/){
@@ -90,6 +90,8 @@ public class King extends ChessFigure {
             }
 
         }
+        else
+            System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento.");
         return respuesta;
     }
 }

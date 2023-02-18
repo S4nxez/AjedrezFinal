@@ -1,7 +1,5 @@
 package Mecanicas;
-
 import java.util.Scanner;
-
 import Figures.*;
 
 /**
@@ -23,6 +21,13 @@ public class Tablero {
     public void setHaciendoenroque(boolean haciendoenroque) {
         this.haciendoenroque = haciendoenroque;
     }
+    private boolean nomaserrores;
+    public boolean isNoMasErrores() {
+        return nomaserrores;
+    }
+    public void setNomaserrores(boolean nomaserrores) {
+        this.nomaserrores = nomaserrores;
+    }
 
     /**
      * Método para asignar fichas a las posiciones del tablero
@@ -41,20 +46,20 @@ public class Tablero {
         tableroFichas[7][7] = new Rook(false); // blancas
 
         // Caballo
-        //tableroFichas[0][1] = new Horse(true);
+        tableroFichas[0][1] = new Horse(true);
         tableroFichas[0][6] = new Horse(true); // negras
-        //tableroFichas[7][1] = new Horse(false);
+        tableroFichas[7][1] = new Horse(false);
         tableroFichas[7][6] = new Horse(false); // blancas
 
         // Alfiles
-        //tableroFichas[0][2] = new Bishop(true);
+        tableroFichas[0][2] = new Bishop(true);
         tableroFichas[0][5] = new Bishop(true); // negras
-        //tableroFichas[7][2] = new Bishop(false);
+        tableroFichas[7][2] = new Bishop(false);
         tableroFichas[7][5] = new Bishop(false); // blancas
 
         // Dama
-        //tableroFichas[0][3] = new Queen(true);// negras
-        //tableroFichas[7][3] = new Queen(false);// blancas
+        tableroFichas[0][3] = new Queen(true);// negras
+        tableroFichas[7][3] = new Queen(false);// blancas
 
         // Rey
         tableroFichas[0][4] = new King(true);// negras
@@ -132,7 +137,8 @@ public class Tablero {
                     }
                 }
             }
-        } if(mov.esHorizontal() && !mov.esVertical() && mov.saltoHorizontal()!=1){
+        }
+        if(mov.esHorizontal() && !mov.esVertical() && mov.saltoHorizontal()!=1){
             int i = mov.getstartPos().getFila();
             int col1= mov.getstartPos().getColumna();
             int col2= mov.getendPos().getColumna();
@@ -153,27 +159,25 @@ public class Tablero {
                 }
             }
         }
-        else if (!mov.esHorizontal() && mov.esVertical() && mov.saltoVertical()!=1){
-            int j = mov.getstartPos().getColumna();
-            int fila1= mov.getstartPos().getFila();
-            int fila2= mov.getendPos().getFila();
+        if (mov.esVertical() && !mov.esHorizontal() && mov.saltoVertical()!=1){
+            int j = mov.getstartPos().getColumna();//columna
+            int fila1= mov.getstartPos().getFila();//fila inicial
+            int fila2= mov.getendPos().getFila();//fila final
 
-            if (fila1 > fila2){//peones blancos
-                if(mov.getstartPos().getFila() == 6){
-                    for (int i=fila1-1; i>fila2; i--){
-                        if (hayPieza(i,j)){
-                            respuesta=true;
-                        }
+            if (fila1 > fila2){//si va hacia arriba
+                if (fila2-fila1==1){
+                    if (hayPieza(fila2,j)){
+                        respuesta=true;
                     }
-                } else {
-                    if (fila2-fila1==1){
-                        if (hayPieza(fila2,j)){
-                            respuesta=true;
+                }else {
+                    for (int i = fila1-1; i > fila2; i--) {
+                        if (hayPieza(i, j)) {
+                            respuesta = true;
                         }
                     }
                 }
             }
-            else if (fila1 < fila2){//peones negros
+            else if (fila1 < fila2){//si va hacia abajo
                 if (fila1-fila2!=1) {
                     for (int i = fila1 + 1; i < fila2; i++) {
                         if (hayPieza(i, j)) {
@@ -187,12 +191,17 @@ public class Tablero {
                         }
                     }
                 }
+                for (int i = fila1+1; i > fila2; i++) {
+                    if (hayPieza(i, j)) {
+                        respuesta = true;
+                    }
+                }
             }
         }
         return respuesta;
     }
-    public void peonFinal(Movement mov){
-        //si hay un peon en la fila1 o fila8 se le pregunta al usuario la ficha por la que se quiere cambiar.
+
+    public void peonFinal(Movement mov){//promocion
         Scanner sc = new Scanner(System.in);
         if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♙]" && mov.getendPos().getFila()==0){
             quitaPieza(0,mov.getendPos().getColumna());
@@ -250,6 +259,7 @@ public class Tablero {
     public void quitaPieza(int fila, int columna) {
         tableroFichas[fila][columna] = null;
     }
+
     public String deteccionEnroque(Movement mov) {
         int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
         if (tableroFichas[0][0] == null)ul++;
@@ -284,9 +294,7 @@ public class Tablero {
             }
         }
     }
-
-
-
+    
     public boolean jaque(Tablero tb, Movement mov, ChessFigure figura, Game turn){
 
         boolean amenaza=false;

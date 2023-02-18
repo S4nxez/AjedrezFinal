@@ -27,8 +27,12 @@ public class Queen extends ChessFigure {
      */
     @Override
     public boolean movement(Movement mov, Tablero tb) {
-        return mov.esDiagonal() || mov.esHorizontal() || mov.esVertical();
-
+        boolean respuesta=false;
+        if (!tb.hayPiezaEntre(mov))
+            return mov.esDiagonal() || mov.esHorizontal() || mov.esVertical();
+        else
+            System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento.");
+        return respuesta;
     }
 }
 

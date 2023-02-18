@@ -4,18 +4,14 @@ import Mecanicas.Movement;
 import Mecanicas.Tablero;
 
 /**
- * Torre
+ * Figura llamada Torre
  * @author NDJ
  */
-public class
+public class Rook extends ChessFigure {
 
-
-
-
-Rook extends ChessFigure {
     /**
      * Método para definir el color de la ficha y asignarle su apariencia
-     * @param color
+     * @param color define el color de la ficha
      */
     public Rook(boolean color) {
         super(color);
@@ -23,23 +19,6 @@ Rook extends ChessFigure {
             nameFigure = "[♜]";//negra
         else
             nameFigure = "[♖]";
-    }
-    private boolean rookMoved = false;
-
-    /**
-     * Setter del estado de la torre
-     * @param rookMoved
-     */
-    public void setRookMoved(boolean rookMoved) {
-        this.rookMoved = rookMoved;
-    }
-
-    /**
-     * Getter del estado de la torre
-     * @return
-     */
-    public boolean isRookMoved() {
-        return rookMoved;
     }
 
 
@@ -50,6 +29,13 @@ Rook extends ChessFigure {
      * @return
      */
     public boolean movement(Movement mov, Tablero tb) {
-        return mov.esHorizontal()|| mov.esVertical();
+        boolean respuesta=false;
+        if (!tb.hayPiezaEntre(mov))
+            return mov.esHorizontal() || mov.esVertical();
+        else{
+            System.out.println("Error, hay una pieza entre medias y no puedes hacer tu movimiento.");
+            tb.setNomaserrores(true);
+            return respuesta;
+        }
     }
 }

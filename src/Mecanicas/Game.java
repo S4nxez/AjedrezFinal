@@ -1,8 +1,4 @@
 package Mecanicas;
-
-import Mecanicas.Position;
-import Mecanicas.Tablero;
-import Mecanicas.Movement;
 import java.util.Scanner;
 
 public class Game {
