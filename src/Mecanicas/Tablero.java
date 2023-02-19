@@ -263,11 +263,11 @@ public class Tablero {
     public String deteccionEnroque(Movement mov) {
         int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
         if (tableroFichas[0][0] == null)ul++;
-        if(tableroFichas[7][0] == null)ur++;
-        if(tableroFichas[0][7] == null)dl++;
-        if(tableroFichas[7][7] == null)dr++;
-        if(tableroFichas[0][4] == null)mt++;
-        if(tableroFichas[7][4] == null)mb++;
+        if (tableroFichas[7][0] == null)ur++;
+        if (tableroFichas[0][7] == null)dl++;
+        if (tableroFichas[7][7] == null)dr++;
+        if (tableroFichas[0][4] == null)mt++;
+        if (tableroFichas[7][4] == null)mb++;
         return "" + ul + ur + dl + dr + mt + mb;
 
     }
@@ -299,42 +299,186 @@ public class Tablero {
 
         boolean amenaza=false;
         boolean turno;
-        turno = turn.getTurn();
+        turno = turn.getTurn();//true es negras false es blancas
         while(!amenaza){ //este bucle es infinito si no le hacen jaque siempre returnea true el metodo
-            //busca vertical arriba
+            int filarey=0, columnarey=0;
+            if (turno){//identifica si el rey negro está en jaque
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {//busca al rey en el tablero
+                        if (tableroFichas[i][j].getNameFigure()=="[♚]")
+                            filarey=i;
+                            columnarey=j;
+                    }
+                }
+
+                //VERTICALES (solo torre y reina)
+                if (filarey!=0) {
+                    for (int i = filarey - 1, j = columnarey; i > 0; i--) {//busca vertical arriba, se restan las filas
+                        if (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")
+                            amenaza = true;
+                    }
+                }
+                if (filarey != 7) {
+                    for (int i=filarey+1, j=columnarey;i<7;i++){//busca vertical abajo, se suman las filas
+                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                }
+
+                //HORIZONTALES (torre y reina)
+                if (columnarey!=0){
+                    for (int i=filarey, j=columnarey-1;i>0;j--){//busca horizontal izquierda, se restan las columnas
+                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                }
+                if (columnarey!=7){
+                    for (int i=filarey, j=columnarey+1;i<0;j++){//busca horizontal derecha, se suman las columnas
+                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                }
+
+                //DIAGONALES (reina, peon, alfil)
+                if(tableroFichas[filarey+1][columnarey-1].getNameFigure()=="♙" && filarey!=0 && columnarey!=0||
+                        tableroFichas[filarey+1][columnarey+1].getNameFigure()=="♙"&& filarey!=0 && columnarey!=0){
+                    amenaza=true;
+                }
+                    //arriba izquierda, se restan las filas y las columnas
+                    for (int i=filarey-1, j=columnarey-1;i>0;i--,j--){
+                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                    //arriba derecha, se restan las filas y se suman las columnas
+                    for (int i=filarey-1, j=columnarey+1;i>0;i--,j++){
+                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                    //abajo izquierda, se suman las filas y se restan las columnas
+                    for (int i=filarey+1, j=columnarey-1;i<7;i++,j--){
+                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+                    //abajo derecha, se suman las filas y las columnas
+                    for (int i=filarey+1, j=columnarey+1;i<7;i++,j++){
+                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
+                            amenaza=true;
+                    }
+            }
+
+            if (!turno){//identifica si el rey blanco está en jaque
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {//busca al rey en el tablero
+                        if (tableroFichas[i][j].getNameFigure()=="[♔]")
+                            filarey=i;
+                        columnarey=j;
+                    }
+                }
+
+                //VERTICALES (solo torre y reina)
+                if (filarey!=0) {
+                    for (int i = filarey - 1, j = columnarey; i > 0; i--) {//busca vertical arriba, se restan las filas
+                        if (tableroFichas[i][j].getNameFigure() == "[♜]" || tableroFichas[i][j].getNameFigure() == "[♛]")
+                            amenaza = true;
+                    }
+                }
+                if (filarey != 7) {
+                    for (int i=filarey+1, j=columnarey;i<7;i++){//busca vertical abajo, se suman las filas
+                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                            amenaza=true;
+                    }
+                }
+
+                //HORIZONTALES (torre y reina)
+                if (columnarey!=0){
+                    for (int i=filarey, j=columnarey-1;i>0;j--){//busca horizontal izquierda, se restan las columnas
+                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                            amenaza=true;
+                    }
+                }
+                if (columnarey!=7){
+                    for (int i=filarey, j=columnarey+1;i<0;j++){//busca horizontal derecha, se suman las columnas
+                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                            amenaza=true;
+                    }
+                }
+
+                //DIAGONALES (reina, peon, alfil)
+                if(tableroFichas[filarey-1][columnarey-1].getNameFigure()=="♟" && filarey!=0 && columnarey!=0||
+                        tableroFichas[filarey-1][columnarey+1].getNameFigure()=="♟"&& filarey!=0 && columnarey!=0){
+                    amenaza=true;
+                }
+                //arriba izquierda, se restan las filas y las columnas
+                for (int i=filarey-1, j=columnarey-1;i>0;i--,j--){
+                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                        amenaza=true;
+                }
+                //arriba derecha, se restan las filas y se suman las columnas
+                for (int i=filarey-1, j=columnarey+1;i>0;i--,j++){
+                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                        amenaza=true;
+                }
+                //abajo izquierda, se suman las filas y se restan las columnas
+                for (int i=filarey+1, j=columnarey-1;i<7;i++,j--){
+                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                        amenaza=true;
+                }
+                //abajo derecha, se suman las filas y las columnas
+                for (int i=filarey+1, j=columnarey+1;i<7;i++,j++){
+                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
+                        amenaza=true;
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //no se si las piezas que he puesto coinciden bien con el turno y hay que usar el equals creo
-            for (int i=mov.getstartPos().getColumna()-1;i!=0;i--){
+
+            /*for (int i=mov.getstartPos().getColumna()-1;i!=0;i--){//busca vertical arriba, se restan las filas
                 if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
                 }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
-            //busca vertical abajo
-            for (int i = 7-mov.getstartPos().getColumna(); i !=0; i--) {
+
+            for (int i = 7-mov.getstartPos().getColumna(); i !=0; i--) { //busca vertical abajo, se suman las filas
                 if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
                 }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
-            //busca hotizontal derecha
-            for (int i=mov.getstartPos().getFila()-1;i!=0;i--){
+
+            for (int i=mov.getstartPos().getFila()-1;i!=0;i--){ //busca hotizontal derecha, se suman las columnas
                 if(tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
                 }else if (tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
+
             //busca hotizontal derecha
-            for (int i = 7-mov.getstartPos().getFila(); i !=0; i--) {
+            for (int i = mov.getstartPos().getFila(); i !=0; i--) {
                 if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
                     amenaza=true;
                 }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
                     amenaza=true;
                 }
             }
-            //busca diagonal
+            //busca diagonal*/
         }
         if (amenaza) return true;
         else return false;
