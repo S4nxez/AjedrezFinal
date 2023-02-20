@@ -83,6 +83,13 @@ public class Game {
                     jugadaValida = true;
                     mov = new Movement(new Position(i, j), new Position(k, l));
                 }
+
+                if(tb.jaque(tb,this,mov)) {
+                    while (tb.jaque(tb, this, mov)) {
+                        System.out.println("estas en jaque");
+
+                    }
+                }
             }
         }
         return mov;

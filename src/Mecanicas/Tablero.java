@@ -9,10 +9,12 @@ import Figures.*;
  */
 public class Tablero {
     private ChessFigure tableroFichas[][] = new ChessFigure[8][8];// [FILAS][COLUMNAS]
+
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
-    private boolean haciendoenroque=false;
+
+    private boolean haciendoenroque = false;
 
     public boolean isHaciendoenroque() {
         return haciendoenroque;
@@ -21,10 +23,13 @@ public class Tablero {
     public void setHaciendoenroque(boolean haciendoenroque) {
         this.haciendoenroque = haciendoenroque;
     }
+
     private boolean nomaserrores;
+
     public boolean isNoMasErrores() {
         return nomaserrores;
     }
+
     public void setNomaserrores(boolean nomaserrores) {
         this.nomaserrores = nomaserrores;
     }
@@ -33,12 +38,13 @@ public class Tablero {
      * Método para asignar fichas a las posiciones del tablero
      */
     public Tablero() {
-
+        /*
         //Peon
         for (int i = 0; i < 8; i++)
             tableroFichas[1][i] = new Pawn(true); // negras
         for (int i = 0; i < 8; i++)
             tableroFichas[6][i] = new Pawn(false);// blancas
+        */
         // Torres
         tableroFichas[0][0] = new Rook(true);
         tableroFichas[0][7] = new Rook(true); // negras
@@ -67,10 +73,10 @@ public class Tablero {
 
     }
 
-       public void pintarTablero() {
+    public void pintarTablero() {
         System.out.println("  [A]  [B]  [C] [D] [E]  [F]  [G]  [H]");
         for (int i = 0; i < tableroFichas.length; i++) {
-            System.out.print((i+1) + " ");
+            System.out.print((i + 1) + " ");
             for (int j = 0; j < tableroFichas.length; j++) {
                 if (tableroFichas[i][j] != null)
                     System.out.print(tableroFichas[i][j].getNameFigure() + " ");
@@ -79,8 +85,7 @@ public class Tablero {
             }
             System.out.println();
         }
-       }
-
+    }
 
 
     public ChessFigure devuelvePieza(int fila, int columna) {
@@ -106,92 +111,90 @@ public class Tablero {
         if (mov.esDiagonal()) {
             if (mov.getstartPos().getFila() < mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() < mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila() +1,
-                        j = mov.getstartPos().getColumna() +1; i < mov.getendPos().getFila() - 1; i++, j++) {
+                for (int i = mov.getstartPos().getFila() + 1,
+                     j = mov.getstartPos().getColumna() + 1; i < mov.getendPos().getFila() - 1; i++, j++) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() > mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() < mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila()-1,
-                        j = mov.getstartPos().getColumna()+1; i > mov.getendPos().getFila() + 1; i--, j++) {
+                for (int i = mov.getstartPos().getFila() - 1,
+                     j = mov.getstartPos().getColumna() + 1; i > mov.getendPos().getFila() + 1; i--, j++) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() > mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() > mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila()-1,
-                        j = mov.getstartPos().getColumna()-1; i > mov.getendPos().getFila() + 1; i--, j--) {
+                for (int i = mov.getstartPos().getFila() - 1,
+                     j = mov.getstartPos().getColumna() - 1; i > mov.getendPos().getFila() + 1; i--, j--) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             } else if (mov.getstartPos().getFila() < mov.getendPos().getFila()
                     && mov.getstartPos().getColumna() > mov.getendPos().getColumna()) {
-                for (int i = mov.getstartPos().getFila()+1,
-                        j = mov.getstartPos().getColumna()-1; i < mov.getendPos().getFila() - 1; i++, j--) {
+                for (int i = mov.getstartPos().getFila() + 1,
+                     j = mov.getstartPos().getColumna() - 1; i < mov.getendPos().getFila() - 1; i++, j--) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
                 }
             }
         }
-        if(mov.esHorizontal() && !mov.esVertical() && mov.saltoHorizontal()!=1){
+        if (mov.esHorizontal() && !mov.esVertical() && mov.saltoHorizontal() != 1) {
             int i = mov.getstartPos().getFila();
-            int col1= mov.getstartPos().getColumna();
-            int col2= mov.getendPos().getColumna();
-            if (col1<col2){
-                for (int j = col1; j < col2-1; j++) {
-                    if (hayPieza(i,j)){
-                        respuesta=true;
+            int col1 = mov.getstartPos().getColumna();
+            int col2 = mov.getendPos().getColumna();
+            if (col1 < col2) {
+                for (int j = col1; j < col2 - 1; j++) {
+                    if (hayPieza(i, j)) {
+                        respuesta = true;
                         break;
                     }
                 }
-            }
-            else{
-                for (int j = col1; j > col2+1; j--) {
-                    if (hayPieza(i,j)){
-                        respuesta=true;
+            } else {
+                for (int j = col1; j > col2 + 1; j--) {
+                    if (hayPieza(i, j)) {
+                        respuesta = true;
                         break;
                     }
                 }
             }
         }
-        if (mov.esVertical() && !mov.esHorizontal() && mov.saltoVertical()!=1){
+        if (mov.esVertical() && !mov.esHorizontal() && mov.saltoVertical() != 1) {
             int j = mov.getstartPos().getColumna();//columna
-            int fila1= mov.getstartPos().getFila();//fila inicial
-            int fila2= mov.getendPos().getFila();//fila final
+            int fila1 = mov.getstartPos().getFila();//fila inicial
+            int fila2 = mov.getendPos().getFila();//fila final
 
-            if (fila1 > fila2){//si va hacia arriba
-                if (fila2-fila1==1){
-                    if (hayPieza(fila2,j)){
-                        respuesta=true;
+            if (fila1 > fila2) {//si va hacia arriba
+                if (fila2 - fila1 == 1) {
+                    if (hayPieza(fila2, j)) {
+                        respuesta = true;
                     }
-                }else {
-                    for (int i = fila1-1; i > fila2; i--) {
+                } else {
+                    for (int i = fila1 - 1; i > fila2; i--) {
                         if (hayPieza(i, j)) {
                             respuesta = true;
                         }
                     }
                 }
-            }
-            else if (fila1 < fila2){//si va hacia abajo
-                if (fila1-fila2!=1) {
+            } else if (fila1 < fila2) {//si va hacia abajo
+                if (fila1 - fila2 != 1) {
                     for (int i = fila1 + 1; i < fila2; i++) {
                         if (hayPieza(i, j)) {
                             respuesta = true;
                         }
                     }
                 } else {
-                    if (fila1-fila2==1){
-                        if (hayPieza(fila2,j)){
-                            respuesta=true;
+                    if (fila1 - fila2 == 1) {
+                        if (hayPieza(fila2, j)) {
+                            respuesta = true;
                         }
                     }
                 }
-                for (int i = fila1+1; i > fila2; i++) {
+                for (int i = fila1 + 1; i > fila2; i++) {
                     if (hayPieza(i, j)) {
                         respuesta = true;
                     }
@@ -201,59 +204,58 @@ public class Tablero {
         return respuesta;
     }
 
-    public void peonFinal(Movement mov){//promocion
+    public void peonFinal(Movement mov) {//promocion
         Scanner sc = new Scanner(System.in);
-        if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♙]" && mov.getendPos().getFila()==0){
-            quitaPieza(0,mov.getendPos().getColumna());
-            int fichanueva=0;
-            while (fichanueva==0){
+        if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure() == "[♙]" && mov.getendPos().getFila() == 0) {
+            quitaPieza(0, mov.getendPos().getColumna());
+            int fichanueva = 0;
+            while (fichanueva == 0) {
                 System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
-                fichanueva=sc.nextInt();
-                switch(fichanueva){
+                fichanueva = sc.nextInt();
+                switch (fichanueva) {
                     case 1://reina
-                    tableroFichas[0][mov.getendPos().getColumna()] = new Queen(false);
-                    break;
+                        tableroFichas[0][mov.getendPos().getColumna()] = new Queen(false);
+                        break;
                     case 2://alfil
-                    tableroFichas[0][mov.getendPos().getColumna()] = new Bishop(false);
-                    break;
+                        tableroFichas[0][mov.getendPos().getColumna()] = new Bishop(false);
+                        break;
                     case 3://caballo
-                    tableroFichas[0][mov.getendPos().getColumna()] = new Horse(false);
-                    break;
+                        tableroFichas[0][mov.getendPos().getColumna()] = new Horse(false);
+                        break;
                     case 4://torre
-                    tableroFichas[0][mov.getendPos().getColumna()] = new Rook(false);
-                    break;
+                        tableroFichas[0][mov.getendPos().getColumna()] = new Rook(false);
+                        break;
                     default:
-                    System.out.println("Elija un número dentro del rango establecido");
-                    fichanueva=0;
+                        System.out.println("Elija un número dentro del rango establecido");
+                        fichanueva = 0;
+                }
+            }
+        } else if (devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure() == "[♟]" && mov.getendPos().getFila() == 7) {
+            quitaPieza(7, mov.getendPos().getColumna());
+            int fichanueva = 0;
+            while (fichanueva == 0) {
+                System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
+                fichanueva = sc.nextInt();
+                switch (fichanueva) {
+                    case 1://reina
+                        tableroFichas[7][mov.getendPos().getColumna()] = new Queen(true);
+                        break;
+                    case 2://alfil
+                        tableroFichas[7][mov.getendPos().getColumna()] = new Bishop(true);
+                        break;
+                    case 3://caballo
+                        tableroFichas[7][mov.getendPos().getColumna()] = new Horse(true);
+                        break;
+                    case 4://torre
+                        tableroFichas[7][mov.getendPos().getColumna()] = new Rook(true);
+                        break;
+                    default:
+                        System.out.println("Elija un número dentro del rango establecido");
+                        fichanueva = 0;
                 }
             }
         }
-        else if(devuelvePieza(mov.getendPos().getFila(), mov.getendPos().getColumna()).getNameFigure()=="[♟]" && mov.getendPos().getFila()==7){
-            quitaPieza(7,mov.getendPos().getColumna());
-            int fichanueva=0;
-            while (fichanueva==0){
-                System.out.println("Has llegado a la última fila, elija por qué ficha quiere que se cambie el peon: \n1.- Reina\n2.-ALfil\n3.-Caballo\n4.-Torre\n");
-                fichanueva=sc.nextInt();
-                switch(fichanueva){
-                    case 1://reina
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Queen(true);
-                    break;
-                    case 2://alfil
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Bishop(true);
-                    break;
-                    case 3://caballo
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Horse(true);
-                    break;
-                    case 4://torre
-                    tableroFichas[7][mov.getendPos().getColumna()] = new Rook(true);
-                    break;
-                    default:
-                    System.out.println("Elija un número dentro del rango establecido");
-                    fichanueva=0;
-                }
-            }
-        }
-        
+
     }
 
     public void quitaPieza(int fila, int columna) {
@@ -261,226 +263,185 @@ public class Tablero {
     }
 
     public String deteccionEnroque(Movement mov) {
-        int ul=0, ur=0, dl=0, dr=0, mt=0, mb=0;//up down left right
-        if (tableroFichas[0][0] == null)ul++;
-        if (tableroFichas[7][0] == null)ur++;
-        if (tableroFichas[0][7] == null)dl++;
-        if (tableroFichas[7][7] == null)dr++;
-        if (tableroFichas[0][4] == null)mt++;
-        if (tableroFichas[7][4] == null)mb++;
+        int ul = 0, ur = 0, dl = 0, dr = 0, mt = 0, mb = 0;//up down left right
+        if (tableroFichas[0][0] == null) ul++;
+        if (tableroFichas[7][0] == null) ur++;
+        if (tableroFichas[0][7] == null) dl++;
+        if (tableroFichas[7][7] == null) dr++;
+        if (tableroFichas[0][4] == null) mt++;
+        if (tableroFichas[7][4] == null) mb++;
         return "" + ul + ur + dl + dr + mt + mb;
 
     }
 
-    public void efectuarenroque(boolean color, String tipo, Movement mov){
-        if (color==true){
-            if (tipo=="largo"){
-                quitaPieza(0,0);
-                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()+1]=new Rook(true);
+    public void efectuarenroque(boolean color, String tipo, Movement mov) {
+        if (color == true) {
+            if (tipo == "largo") {
+                quitaPieza(0, 0);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna() + 1] = new Rook(true);
             }
-            if (tipo=="corto"){
-                quitaPieza(0,7);
-                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()-1]=new Rook(true);
+            if (tipo == "corto") {
+                quitaPieza(0, 7);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna() - 1] = new Rook(true);
             }
         }
-        if (color==false){
-            if (tipo=="largo"){
-                quitaPieza(7,0);
-                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()+1]=new Rook(false);
+        if (color == false) {
+            if (tipo == "largo") {
+                quitaPieza(7, 0);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna() + 1] = new Rook(false);
             }
-            if (tipo=="corto"){
-                quitaPieza(7,7);
-                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()-1]=new Rook(false);
+            if (tipo == "corto") {
+                quitaPieza(7, 7);
+                tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna() - 1] = new Rook(false);
             }
         }
     }
-    
-    public boolean jaque(Tablero tb, Movement mov, ChessFigure figura, Game turn){
 
-        boolean amenaza=false;
-        boolean turno;
-        turno = turn.getTurn();//true es negras false es blancas
-        while(!amenaza){ //este bucle es infinito si no le hacen jaque siempre returnea true el metodo
-            int filarey=0, columnarey=0;
-            if (turno){//identifica si el rey negro está en jaque
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 8; j++) {//busca al rey en el tablero
-                        if (tableroFichas[i][j].getNameFigure()=="[♚]")
-                            filarey=i;
-                            columnarey=j;
-                    }
-                }
+    public boolean jaque(Tablero tb, Game g, Movement mov) {
+        boolean amenaza = false;
+        boolean turno = g.getTurn(); // true es negras false es blancas
 
-                //VERTICALES (solo torre y reina)
-                if (filarey!=0) {
-                    for (int i = filarey - 1, j = columnarey; i > 0; i--) {//busca vertical arriba, se restan las filas
-                        if (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")
-                            amenaza = true;
+        int filarey = 0, columnarey = 0;
+        if (turno) { // identifica si el rey negro está en jaque
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) { // busca al rey en el tablero
+                    if (tableroFichas[i][j] != null && tableroFichas[i][j].getNameFigure() == "[♚]") {
+                        filarey = i;
+                        columnarey = j;
                     }
-                }
-                if (filarey != 7) {
-                    for (int i=filarey+1, j=columnarey;i<7;i++){//busca vertical abajo, se suman las filas
-                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                }
-
-                //HORIZONTALES (torre y reina)
-                if (columnarey!=0){
-                    for (int i=filarey, j=columnarey-1;i>0;j--){//busca horizontal izquierda, se restan las columnas
-                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                }
-                if (columnarey!=7){
-                    for (int i=filarey, j=columnarey+1;i<0;j++){//busca horizontal derecha, se suman las columnas
-                        if(tableroFichas[i][j].getNameFigure()=="[♖]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                }
-
-                //DIAGONALES (reina, peon, alfil)
-                if(tableroFichas[filarey+1][columnarey-1].getNameFigure()=="♙" && filarey!=0 && columnarey!=0||
-                        tableroFichas[filarey+1][columnarey+1].getNameFigure()=="♙"&& filarey!=0 && columnarey!=0){
-                    amenaza=true;
-                }
-                    //arriba izquierda, se restan las filas y las columnas
-                    for (int i=filarey-1, j=columnarey-1;i>0;i--,j--){
-                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                    //arriba derecha, se restan las filas y se suman las columnas
-                    for (int i=filarey-1, j=columnarey+1;i>0;i--,j++){
-                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                    //abajo izquierda, se suman las filas y se restan las columnas
-                    for (int i=filarey+1, j=columnarey-1;i<7;i++,j--){
-                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-                    //abajo derecha, se suman las filas y las columnas
-                    for (int i=filarey+1, j=columnarey+1;i<7;i++,j++){
-                        if(tableroFichas[i][j].getNameFigure()=="[♗]"||tableroFichas[i][j].getNameFigure()=="[♕]")
-                            amenaza=true;
-                    }
-            }
-
-            if (!turno){//identifica si el rey blanco está en jaque
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 8; j++) {//busca al rey en el tablero
-                        if (tableroFichas[i][j].getNameFigure()=="[♔]")
-                            filarey=i;
-                        columnarey=j;
-                    }
-                }
-
-                //VERTICALES (solo torre y reina)
-                if (filarey!=0) {
-                    for (int i = filarey - 1, j = columnarey; i > 0; i--) {//busca vertical arriba, se restan las filas
-                        if (tableroFichas[i][j].getNameFigure() == "[♜]" || tableroFichas[i][j].getNameFigure() == "[♛]")
-                            amenaza = true;
-                    }
-                }
-                if (filarey != 7) {
-                    for (int i=filarey+1, j=columnarey;i<7;i++){//busca vertical abajo, se suman las filas
-                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                            amenaza=true;
-                    }
-                }
-
-                //HORIZONTALES (torre y reina)
-                if (columnarey!=0){
-                    for (int i=filarey, j=columnarey-1;i>0;j--){//busca horizontal izquierda, se restan las columnas
-                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                            amenaza=true;
-                    }
-                }
-                if (columnarey!=7){
-                    for (int i=filarey, j=columnarey+1;i<0;j++){//busca horizontal derecha, se suman las columnas
-                        if(tableroFichas[i][j].getNameFigure()=="[♜]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                            amenaza=true;
-                    }
-                }
-
-                //DIAGONALES (reina, peon, alfil)
-                if(tableroFichas[filarey-1][columnarey-1].getNameFigure()=="♟" && filarey!=0 && columnarey!=0||
-                        tableroFichas[filarey-1][columnarey+1].getNameFigure()=="♟"&& filarey!=0 && columnarey!=0){
-                    amenaza=true;
-                }
-                //arriba izquierda, se restan las filas y las columnas
-                for (int i=filarey-1, j=columnarey-1;i>0;i--,j--){
-                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                        amenaza=true;
-                }
-                //arriba derecha, se restan las filas y se suman las columnas
-                for (int i=filarey-1, j=columnarey+1;i>0;i--,j++){
-                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                        amenaza=true;
-                }
-                //abajo izquierda, se suman las filas y se restan las columnas
-                for (int i=filarey+1, j=columnarey-1;i<7;i++,j--){
-                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                        amenaza=true;
-                }
-                //abajo derecha, se suman las filas y las columnas
-                for (int i=filarey+1, j=columnarey+1;i<7;i++,j++){
-                    if(tableroFichas[i][j].getNameFigure()=="[♝]"||tableroFichas[i][j].getNameFigure()=="[♛]")
-                        amenaza=true;
+                    else
+                        break;
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //no se si las piezas que he puesto coinciden bien con el turno y hay que usar el equals creo
-
-            /*for (int i=mov.getstartPos().getColumna()-1;i!=0;i--){//busca vertical arriba, se restan las filas
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
-                    amenaza=true;
-                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
-                    amenaza=true;
+            // VERTICALES (solo torre y reina)
+            if (filarey != 0) {
+                for (int i = filarey - 1, j = columnarey; i >= 0; i--) { // busca vertical arriba, se restan las filas
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            if (filarey != 7) {
+                for (int i = filarey + 1, j = columnarey; i <= 7; i++) { // busca vertical abajo, se suman las filas
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
                 }
             }
 
-            for (int i = 7-mov.getstartPos().getColumna(); i !=0; i--) { //busca vertical abajo, se suman las filas
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
-                    amenaza=true;
-                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno|tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
-                    amenaza=true;
+            // HORIZONTALES (solo torre y reina)
+            if (columnarey != 0) {
+                for (int i = filarey, j = columnarey - 1; j >= 0; j--) { // busca horizontal izquierda, se restan las columnas
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            if (columnarey != 7) {
+                for (int i = filarey, j = columnarey + 1; j <= 7; j++) { // busca horizontal derecha, se suman las columnas
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♖]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            // DIAGONALES (solo alfil y reina)
+            if (filarey != 0 && columnarey != 0) {
+                for (int i = filarey - 1, j = columnarey - 1; i >= 0 && j >= 0; i--, j--) { // busca diagonal izquierda arriba
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♗]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            if (filarey != 0 && columnarey != 7) {
+                for (int i = filarey - 1, j = columnarey + 1; i >= 0 && j <= 7; i--, j++) { // busca diagonal derecha arriba
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♗]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            if (filarey != 7 && columnarey != 0) {
+                for (int i = filarey + 1, j = columnarey - 1; i <= 7 && j >= 0; i++, j--) { // busca diagonal izquierda abajo
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♗]" || tableroFichas[i][j].getNameFigure() == "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
+                }
+            }
+            if (filarey != 7 && columnarey != 7) {
+                for (int i = filarey + 1, j = columnarey + 1; i <= 7 && j <= 7; i++, j++) { // busca diagonal derecha abajo
+                    if (tableroFichas[i][j] != null && (tableroFichas[i][j].getNameFigure() == "[♗]" || tableroFichas[i][j].getNameFigure() ==
+                            "[♕]")) {
+                        amenaza = true;
+                        break;
+                    }
                 }
             }
 
-            for (int i=mov.getstartPos().getFila()-1;i!=0;i--){ //busca hotizontal derecha, se suman las columnas
-                if(tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
-                    amenaza=true;
-                }else if (tableroFichas[mov.getstartPos().getFila()][i].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
-                    amenaza=true;
+            // CABALLOS
+            int[] filaCaballos = {-2, -1, 1, 2, 2, 1, -1, -2};
+            int[] columnaCaballos = {1, 2, 2, 1, -1, -2, -2, -1};
+            for (int i = 0; i < 8; i++) {
+                int fila = filarey + filaCaballos[i];
+                int columna = columnarey + columnaCaballos[i];
+                if (fila >= 0 && fila <= 7 && columna >= 0 && columna <= 7) { // verifica que la posición sea válida en el tablero
+                    if (tableroFichas[fila][columna] != null && tableroFichas[fila][columna].getNameFigure() == "[♘]") {
+                        amenaza = true;
+                        break;
+                    }
                 }
             }
 
-            //busca hotizontal derecha
-            for (int i = mov.getstartPos().getFila(); i !=0; i--) {
-                if(tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♜]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♖]"&& !turno){
-                    amenaza=true;
-                }else if (tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♛]"&& turno||tableroFichas[i][mov.getstartPos().getFila()].getNameFigure()=="[♕]"&& !turno){
-                    amenaza=true;
+            // PEONES
+            int[] filaPeones = {-1, -1};
+            int[] columnaPeones = {-1, 1};
+            for (int i = 0; i < 2; i++) {
+                int fila = filarey + filaPeones[i];
+                int columna = columnarey + columnaPeones[i];
+                if (fila >= 0 && fila <= 7 && columna >= 0 && columna <= 7) { // verifica que la posición sea válida en el tablero
+                    if (tableroFichas[fila][columna] != null && tableroFichas[fila][columna].getNameFigure() == "[♙]") {
+                        amenaza = true;
+                        break;
+                    }
                 }
             }
-            //busca diagonal*/
+
+            return amenaza;
         }
-        if (amenaza) return true;
-        else return false;
+        // CABALLO
+        int[][] posicionesCaballo = { { filarey - 1, columnarey - 2 }, { filarey - 2, columnarey - 1 }, { filarey - 2, columnarey + 1 },
+                { filarey - 1, columnarey + 2 }, { filarey + 1, columnarey + 2 }, { filarey + 2, columnarey + 1 },
+                { filarey + 2, columnarey - 1 }, { filarey + 1, columnarey - 2 } };
+        for (int i = 0; i < posicionesCaballo.length; i++) {
+            int f = posicionesCaballo[i][0];
+            int c = posicionesCaballo[i][1];
+            if (f >= 0 && f <= 7 && c >= 0 && c <= 7) {
+                if (tableroFichas[f][c] != null && tableroFichas[f][c].getNameFigure() == "[♘]") {
+                    amenaza = true;
+                    break;
+                }
+            }
+        }
+
+        // PEON
+        if (filarey != 7 && columnarey != 0) { // ataques peón izquierda
+            if (tableroFichas[filarey + 1][columnarey - 1] != null
+                    && tableroFichas[filarey + 1][columnarey - 1].getNameFigure() == "[♙]") {
+                amenaza = true;
+            }
+        }
+        if (filarey != 7 && columnarey != 7) { // ataques peón derecha
+            if (tableroFichas[filarey + 1][columnarey + 1] != null
+                    && tableroFichas[filarey + 1][columnarey + 1].getNameFigure() == "[♙]") {
+                amenaza = true;
+            }
+        }
+        return amenaza;
     }
 }

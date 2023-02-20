@@ -8,18 +8,17 @@ public class Main {
 
     public static void main(String[] args) {
         Tablero c = new Tablero();
-        Game h = new Game(false);
-        Movement mov= null;
+        Game h = new Game(true);
+        Movement e= null;
+
         while(!h.getFinPartida()){
-            mov = h.pedirInput(c);
-            System.out.println("La pieza es "+c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()));
-            System.out.println(c.deteccionEnroque(mov));
-           if (!c.devuelvePieza(mov.getstartPos().getFila(), mov.getstartPos().getColumna()).movement(mov, c)){
+            e = h.pedirInput(c);
+            if (!c.devuelvePieza(e.getstartPos().getFila(), e.getstartPos().getColumna()).movement(e, c)){
                if (!c.isNoMasErrores())
                    System.out.println("Error, la pieza no se puede mover así");
-           }
-        else{
-               c.moverPieza(mov);
+            }
+            else{
+               c.moverPieza(e);
                h.cambiarTurno();
            }
         }
