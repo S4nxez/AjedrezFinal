@@ -85,10 +85,7 @@ public class Game {
                 }
 
                 if(tb.jaque(tb,this,mov)) {
-                    while (tb.jaque(tb, this, mov)) {
-                        System.out.println("estas en jaque");
-
-                    }
+                        System.out.println("estas en jaque, cubrete o mueve el rey para continuar.");
                 }
             }
         }

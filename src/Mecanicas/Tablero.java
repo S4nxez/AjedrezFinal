@@ -93,8 +93,7 @@ public class Tablero {
     }
 
     public void moverPieza(Movement mov) {
-        tableroFichas[mov.getendPos().getFila()][mov.getendPos()
-                .getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
+        tableroFichas[mov.getendPos().getFila()][mov.getendPos().getColumna()] = tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()];
         tableroFichas[mov.getstartPos().getFila()][mov.getstartPos().getColumna()] = null;
     }
 
