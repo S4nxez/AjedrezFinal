@@ -1,1 +1,1 @@
-Main-class:Main
+tester.Main-class:tester.Main

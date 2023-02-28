@@ -1,6 +1,10 @@
 package Mecanicas;
 import java.util.Scanner;
 
+/**
+ * Clase Game
+ */
+
 public class Game {
     
     Scanner scanner = new Scanner(System.in);
@@ -12,36 +16,59 @@ public class Game {
         this.Turn = Turn;
     }
 
+    /**
+     * Método getter de la variable FinPartida
+     * @return
+     */
     public boolean getFinPartida() {
         return this.finPartida;
     }
 
+    /**
+     * Método getter de la variable Turn
+     * @return
+     */
     public boolean getTurn(){
         return Turn;
     }
 
+    /**
+     * Método Para cambiar el booleando Turn
+     * @param turno
+     */
     public void setTurno(boolean turno) {
         this.Turn = turno;
     }
 
+    /**
+     * Método que cambia el turno
+     */
     public void cambiarTurno(){
         Turn=!Turn;
     }
 
+    /**
+     * Método getter de la variable Jaquemate
+     * @return
+     */
     public boolean isJaquemate() {
         return jaquemate;
     }
 
+    /**
+     * Método que cambia el booleano Jaquemate
+     * @param jaquemate
+     */
     public void setJaquemate(boolean jaquemate) {
         this.jaquemate = jaquemate;
     }
-    /*
+
+    /**
      * Método que pide al usuario la jugada que quiere realizar, con varias excepciones de reglas básicas como no dejar comerte fichas
      * de tu propio color entre otras. El Método te devuelve la jugada "validada" para que las clases movimiento o posición puedan recibirlas.
      * @param tb
      * @return pedirInput
      */
-       
     public Movement pedirInput(Tablero tb){
         boolean jugadaValida=false;
         Movement mov = null;
@@ -84,10 +111,9 @@ public class Game {
                     mov = new Movement(new Position(i, j), new Position(k, l));
                 }
 
-                if(tb.jaque(tb,this,mov)) {
-                        System.out.println("estas en jaque, cubrete o mueve el rey para continuar.");
-                }
+
             }
+
         }
         return mov;
     }

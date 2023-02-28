@@ -1,7 +1,12 @@
-//import java.util.Scanner;
+package tester;//import java.util.Scanner;
 import Mecanicas.Game;
 import Mecanicas.Movement;
 import Mecanicas.Tablero;
+
+/**
+ * Clase main
+ * @package tester
+ */
 
 public class Main {
     /*chcp 65001 para que se vean las piezas en terminal*/

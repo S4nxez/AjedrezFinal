@@ -1,8 +1,7 @@
 package Mecanicas;
 
 /**
- * Posicion
- * @author NDJ
+ * Clase Posicion
  */
 public class Position {
     private int fila;
@@ -55,8 +54,8 @@ public class Position {
      * @return
      */
     //@Override
-   /* public String toString() {
+    public String toString() {
        return String.valueOf(fila + columna);
-    }*/
+    }
 
 }

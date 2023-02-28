@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AjedrezFinal">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/AjedrezFinal.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

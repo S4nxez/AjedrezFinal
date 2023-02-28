@@ -1,8 +1,7 @@
 package Mecanicas;
 
 /**
- *Movimiento
- * @author NDJ
+ * Clase Movimiento
  */
 public class Movement {
     private Position startPos;
