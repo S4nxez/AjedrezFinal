@@ -52,6 +52,10 @@ public abstract class ChessFigure {
         * */
     }
     
+    
+    /** 
+     * @return String
+     */
     public String getNameFigure() {
         return nameFigure;
         /*

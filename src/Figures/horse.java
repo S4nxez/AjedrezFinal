@@ -7,7 +7,7 @@ import Mecanicas.*;
  */
 public class Horse extends ChessFigure {
     /**
-     * Método para definir el color de la ficha y asignarle su apariencia
+     * Metodo para definir el color de la ficha y asignarle su apariencia
      * @param color
      */
     public Horse(boolean color) {
@@ -19,7 +19,7 @@ public class Horse extends ChessFigure {
     }
 
     /**
-     * Método para regular el movimiento del caballo
+     * Metodo para regular el movimiento del caballo
      * @param mov
      * @param tb
      * @return

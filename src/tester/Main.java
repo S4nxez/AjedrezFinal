@@ -5,10 +5,13 @@ import Mecanicas.Tablero;
 
 /**
  * Clase main
- * @package tester
  */
 
 public class Main {
+    
+    /** 
+     * @param args
+     */
     /*chcp 65001 para que se vean las piezas en terminal*/
     public static void main(String[] args) {
         Tablero c = new Tablero();

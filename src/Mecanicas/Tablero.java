@@ -8,6 +8,10 @@ import Figures.*;
 public class Tablero {
     private ChessFigure tableroFichas[][] = new ChessFigure[8][8];// [FILAS][COLUMNAS]
 
+    
+    /** 
+     * @return ChessFigure[][]
+     */
     public ChessFigure[][] getTableroFichas() {
         return tableroFichas;
     }
