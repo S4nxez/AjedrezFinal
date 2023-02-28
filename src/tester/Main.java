@@ -12,6 +12,7 @@ public class Main {
 
         while(!h.getFinPartida()){
             e = h.pedirInput(c);
+
             if (!c.devuelvePieza(e.getstartPos().getFila(), e.getstartPos().getColumna()).movement(e, c)){
                if (!c.isNoMasErrores())
                    System.out.println("Error, la pieza no se puede mover así");
@@ -20,6 +21,9 @@ public class Main {
                c.moverPieza(e);
                h.cambiarTurno();
            }
+            if(c.jaque(c,h,e)) {
+                System.out.println("estas en jaque, cubrete o mueve el rey para continuar.");
+            }
         }
         System.out.println(h.decirResultado());
     }
